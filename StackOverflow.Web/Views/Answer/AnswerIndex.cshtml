@@ -7,7 +7,7 @@
 <h2>Answers</h2>
 
 <p>
-    @Html.ActionLink("New Answer", "AddNewAnswer")
+    @Html.ActionLink("New Answer", "AddNewAnswer", TempData["QRef"] = TempData["QuestionRef"])
 </p>
 <table class="table">
     <tr>

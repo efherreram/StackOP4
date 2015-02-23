@@ -64,6 +64,10 @@
     <Compile Include="Migrations\201502222017266_addAnswer1.Designer.cs">
       <DependentUpon>201502222017266_addAnswer1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201502232102391_bestAnswerAdd.cs" />
+    <Compile Include="Migrations\201502232102391_bestAnswerAdd.Designer.cs">
+      <DependentUpon>201502232102391_bestAnswerAdd.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="StackOverflowContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -87,6 +91,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201502222017266_addAnswer1.resx">
       <DependentUpon>201502222017266_addAnswer1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201502232102391_bestAnswerAdd.resx">
+      <DependentUpon>201502232102391_bestAnswerAdd.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

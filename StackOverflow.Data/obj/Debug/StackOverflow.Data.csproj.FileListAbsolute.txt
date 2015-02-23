@@ -18,3 +18,4 @@ C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Data\bin\Deb
 C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Data\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
 C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Data\obj\Debug\StackOverflow.Data.Migrations.addAnswer.resources
 C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Data\obj\Debug\StackOverflow.Data.Migrations.addAnswer1.resources
+C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Data\obj\Debug\StackOverflow.Data.Migrations.bestAnswerAdd.resources

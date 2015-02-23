@@ -60,7 +60,7 @@ namespace StackOverflow.Web.Controllers
         [HttpPost]
         public ActionResult AddNewAnswer(AddNewAnswerModel model)
         {
-            var QuestionId = TempData["QuestionRef"];
+            var QuestionId = TempData["QRef"];
             Guid id = Guid.Parse(QuestionId.ToString());
             if (ModelState.IsValid)
             {

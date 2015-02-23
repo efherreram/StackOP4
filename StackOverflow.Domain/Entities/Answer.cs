@@ -21,5 +21,6 @@ namespace StackOverflow.Domain.Entities
         public Question QuestionReference { get; set; }
         public DateTime CreationDate { get; set; }
         public DateTime ModificationDate { get; set; }
+        public bool IsBestAnswer { get; set; }
     }
 }
