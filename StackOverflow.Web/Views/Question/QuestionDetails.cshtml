@@ -1,0 +1,47 @@
+﻿@model StackOverflow.Web.Models.QuestionDetailsModel
+
+@{
+    ViewBag.Title = "QuestionDetails";
+}
+
+<h2>QuestionDetails</h2>
+
+<div>
+    <h4>QuestionDetailsModel</h4>
+    <hr/>
+    @Html.ActionLink("Like", "LikeQuestion", "Question", new { id = Model.QuestionId }, null)
+    <div>@Html.ActionLink("Dislike", "DisLikeQuestion", "Question", new { id = Model.QuestionId }, null)</div>
+    <dl class="dl-horizontal">
+        <dt>
+            <font size="6"><b>@Html.DisplayNameFor(model => model.Title)</b></font>
+        </dt>
+
+        <dd>
+            @Html.TextAreaFor(model => model.Title, new {@readonly = true})
+        </dd>
+
+        <dt>
+            <b>@Html.DisplayNameFor(model => model.Description)</b>
+        </dt>
+
+        <dd>
+            @Html.TextAreaFor(model => model.Description, new {@readonly = true})
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Score)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Score)
+        </dd>
+        <dd>
+            @Html.ActionLink("Answers", "AnswerIndex","Answer",new{id = Model.QuestionId},null)
+        </dd>
+    </dl>
+</div>
+<p>
+    @*@Html.ActionLink("Edit", "Edit", new {/* id = Model.PrimaryKey */}) |*@
+    @Html.ActionLink("<- Back to Index", "Index")
+</p>
+

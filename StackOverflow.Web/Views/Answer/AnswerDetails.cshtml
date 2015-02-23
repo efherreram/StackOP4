@@ -1,0 +1,36 @@
+﻿@model StackOverflow.Web.Models.AnswerDetailModel
+
+@{
+    ViewBag.Title = "AnswerDetails";
+}
+
+<h2>AnswerDetails</h2>
+
+<div>
+    <h4>AnswerDetailModel</h4>
+    <hr/>
+
+    @Html.ActionLink("Like", "LikeAnswer","Answer", new{id = Model.AnswerId}, null)
+    <div>@Html.ActionLink("Dislike", "DisLikeAnswer", "Answer", new {id = Model.AnswerId}, null)</div>
+    <dl class="dl-horizontal">
+        <dt>
+            <font size=" 6"><b>@Html.DisplayName("Answer: ")</b></font>
+        </dt>
+
+        <dd>
+            @Html.TextAreaFor(model => model.AnswerText,new{@readonly = true})
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Votes)
+        </dt>
+
+        <dd>
+            @Html.TextBoxFor(model => model.Votes, new {@readonly = true})
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to Index", "AnswerIndex")
+</p>

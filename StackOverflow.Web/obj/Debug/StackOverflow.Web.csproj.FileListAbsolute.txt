@@ -1,0 +1,110 @@
+C:\Users\Alejandro\Documents\Visual Studio 2013\Projects\StackOverflow\StackOverflow.Web\bin\StackOverflow.Web.dll.config
+C:\Users\Alejandro\Documents\Visual Studio 2013\Projects\StackOverflow\StackOverflow.Web\bin\StackOverflow.Web.dll
+C:\Users\Alejandro\Documents\Visual Studio 2013\Projects\StackOverflow\StackOverflow.Web\bin\StackOverflow.Web.pdb
+C:\Users\Alejandro\Documents\Visual Studio 2013\Projects\StackOverflow\StackOverflow.Web\bin\Antlr3.Runtime.dll
+C:\Users\Alejandro\Documents\Visual Studio 2013\Projects\StackOverflow\StackOverflow.Web\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Alejandro\Documents\Visual Studio 2013\Projects\StackOverflow\StackOverflow.Web\bin\Newtonsoft.Json.dll
+C:\Users\Alejandro\Documents\Visual Studio 2013\Projects\StackOverflow\StackOverflow.Web\bin\System.Web.Helpers.dll
+C:\Users\Alejandro\Documents\Visual Studio 2013\Projects\StackOverflow\StackOverflow.Web\bin\System.Web.Mvc.dll
+C:\Users\Alejandro\Documents\Visual Studio 2013\Projects\StackOverflow\StackOverflow.Web\bin\System.Web.Optimization.dll
+C:\Users\Alejandro\Documents\Visual Studio 2013\Projects\StackOverflow\StackOverflow.Web\bin\System.Web.Razor.dll
+C:\Users\Alejandro\Documents\Visual Studio 2013\Projects\StackOverflow\StackOverflow.Web\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Alejandro\Documents\Visual Studio 2013\Projects\StackOverflow\StackOverflow.Web\bin\System.Web.WebPages.dll
+C:\Users\Alejandro\Documents\Visual Studio 2013\Projects\StackOverflow\StackOverflow.Web\bin\System.Web.WebPages.Razor.dll
+C:\Users\Alejandro\Documents\Visual Studio 2013\Projects\StackOverflow\StackOverflow.Web\bin\WebGrease.dll
+C:\Users\Alejandro\Documents\Visual Studio 2013\Projects\StackOverflow\StackOverflow.Web\bin\System.Web.Helpers.xml
+C:\Users\Alejandro\Documents\Visual Studio 2013\Projects\StackOverflow\StackOverflow.Web\bin\System.Web.Mvc.xml
+C:\Users\Alejandro\Documents\Visual Studio 2013\Projects\StackOverflow\StackOverflow.Web\bin\System.Web.Optimization.xml
+C:\Users\Alejandro\Documents\Visual Studio 2013\Projects\StackOverflow\StackOverflow.Web\bin\System.Web.Razor.xml
+C:\Users\Alejandro\Documents\Visual Studio 2013\Projects\StackOverflow\StackOverflow.Web\bin\System.Web.WebPages.xml
+C:\Users\Alejandro\Documents\Visual Studio 2013\Projects\StackOverflow\StackOverflow.Web\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Alejandro\Documents\Visual Studio 2013\Projects\StackOverflow\StackOverflow.Web\bin\System.Web.WebPages.Razor.xml
+C:\Users\Alejandro\Documents\Visual Studio 2013\Projects\StackOverflow\StackOverflow.Web\bin\Antlr3.Runtime.pdb
+C:\Users\Alejandro\Documents\Visual Studio 2013\Projects\StackOverflow\StackOverflow.Web\bin\Newtonsoft.Json.xml
+C:\Users\Alejandro\Documents\Visual Studio 2013\Projects\StackOverflow\StackOverflow.Web\obj\Debug\StackOverflow.Web.csprojResolveAssemblyReference.cache
+C:\Users\Alejandro\Documents\Visual Studio 2013\Projects\StackOverflow\StackOverflow.Web\obj\Debug\StackOverflow.Web.dll
+C:\Users\Alejandro\Documents\Visual Studio 2013\Projects\StackOverflow\StackOverflow.Web\obj\Debug\StackOverflow.Web.pdb
+C:\Users\Edwin\Documents\Progra 4\StackOverflow\StackOverflow.Web\bin\StackOverflow.Web.dll.config
+C:\Users\Edwin\Documents\Progra 4\StackOverflow\StackOverflow.Web\bin\StackOverflow.Web.dll
+C:\Users\Edwin\Documents\Progra 4\StackOverflow\StackOverflow.Web\bin\StackOverflow.Web.pdb
+C:\Users\Edwin\Documents\Progra 4\StackOverflow\StackOverflow.Web\bin\Antlr3.Runtime.dll
+C:\Users\Edwin\Documents\Progra 4\StackOverflow\StackOverflow.Web\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Edwin\Documents\Progra 4\StackOverflow\StackOverflow.Web\bin\Newtonsoft.Json.dll
+C:\Users\Edwin\Documents\Progra 4\StackOverflow\StackOverflow.Web\bin\System.Web.Helpers.dll
+C:\Users\Edwin\Documents\Progra 4\StackOverflow\StackOverflow.Web\bin\System.Web.Mvc.dll
+C:\Users\Edwin\Documents\Progra 4\StackOverflow\StackOverflow.Web\bin\System.Web.Optimization.dll
+C:\Users\Edwin\Documents\Progra 4\StackOverflow\StackOverflow.Web\bin\System.Web.Razor.dll
+C:\Users\Edwin\Documents\Progra 4\StackOverflow\StackOverflow.Web\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Edwin\Documents\Progra 4\StackOverflow\StackOverflow.Web\bin\System.Web.WebPages.dll
+C:\Users\Edwin\Documents\Progra 4\StackOverflow\StackOverflow.Web\bin\System.Web.WebPages.Razor.dll
+C:\Users\Edwin\Documents\Progra 4\StackOverflow\StackOverflow.Web\bin\WebGrease.dll
+C:\Users\Edwin\Documents\Progra 4\StackOverflow\StackOverflow.Web\bin\System.Web.Helpers.xml
+C:\Users\Edwin\Documents\Progra 4\StackOverflow\StackOverflow.Web\bin\System.Web.Mvc.xml
+C:\Users\Edwin\Documents\Progra 4\StackOverflow\StackOverflow.Web\bin\System.Web.Optimization.xml
+C:\Users\Edwin\Documents\Progra 4\StackOverflow\StackOverflow.Web\bin\System.Web.Razor.xml
+C:\Users\Edwin\Documents\Progra 4\StackOverflow\StackOverflow.Web\bin\System.Web.WebPages.xml
+C:\Users\Edwin\Documents\Progra 4\StackOverflow\StackOverflow.Web\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Edwin\Documents\Progra 4\StackOverflow\StackOverflow.Web\bin\System.Web.WebPages.Razor.xml
+C:\Users\Edwin\Documents\Progra 4\StackOverflow\StackOverflow.Web\bin\Antlr3.Runtime.pdb
+C:\Users\Edwin\Documents\Progra 4\StackOverflow\StackOverflow.Web\bin\Newtonsoft.Json.xml
+C:\Users\Edwin\Documents\Progra 4\StackOverflow\StackOverflow.Web\obj\Debug\StackOverflow.Web.csprojResolveAssemblyReference.cache
+C:\Users\Edwin\Documents\Progra 4\StackOverflow\StackOverflow.Web\obj\Debug\StackOverflow.Web.dll
+C:\Users\Edwin\Documents\Progra 4\StackOverflow\StackOverflow.Web\obj\Debug\StackOverflow.Web.pdb
+C:\Users\Edwin\Documents\Progra 4\StackOverflow\StackOverflow.Web\bin\AutoMapper.Net4.dll
+C:\Users\Edwin\Documents\Progra 4\StackOverflow\StackOverflow.Web\bin\AutoMapper.dll
+C:\Users\Edwin\Documents\Progra 4\StackOverflow\StackOverflow.Web\bin\StackOverflow.Domain.dll
+C:\Users\Edwin\Documents\Progra 4\StackOverflow\StackOverflow.Web\bin\StackOverflow.Domain.pdb
+C:\Users\Edwin\Documents\Progra 4\StackOverflow\StackOverflow.Web\bin\AutoMapper.pdb
+C:\Users\Edwin\Documents\Progra 4\StackOverflow\StackOverflow.Web\bin\AutoMapper.xml
+C:\Users\Edwin\Documents\Progra 4\StackOverflow\StackOverflow.Web\bin\AutoMapper.Net4.pdb
+C:\Users\Edwin\Documents\Progra 4\StackOverflow\StackOverflow.Web\bin\Autofac.dll
+C:\Users\Edwin\Documents\Progra 4\StackOverflow\StackOverflow.Web\bin\Autofac.Integration.Mvc.dll
+C:\Users\Edwin\Documents\Progra 4\StackOverflow\StackOverflow.Web\bin\Autofac.xml
+C:\Users\Edwin\Documents\Progra 4\StackOverflow\StackOverflow.Web\bin\Autofac.Integration.Mvc.xml
+C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\AutoMapper.Net4.dll
+C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\StackOverflow.Web.dll.config
+C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\StackOverflow.Web.dll
+C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\StackOverflow.Web.pdb
+C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\Antlr3.Runtime.dll
+C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\Autofac.dll
+C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\Autofac.Integration.Mvc.dll
+C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\AutoMapper.dll
+C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\EntityFramework.dll
+C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\EntityFramework.SqlServer.dll
+C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\Newtonsoft.Json.dll
+C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\StackOverflow.Data.dll
+C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\StackOverflow.Domain.dll
+C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\System.Web.Helpers.dll
+C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\System.Web.Mvc.dll
+C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\System.Web.Optimization.dll
+C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\System.Web.Razor.dll
+C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\System.Web.WebPages.dll
+C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\System.Web.WebPages.Razor.dll
+C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\WebGrease.dll
+C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\StackOverflow.Data.pdb
+C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\StackOverflow.Domain.pdb
+C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\Autofac.xml
+C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\Autofac.Integration.Mvc.xml
+C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\AutoMapper.pdb
+C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\AutoMapper.xml
+C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\AutoMapper.Net4.pdb
+C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\EntityFramework.xml
+C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\EntityFramework.SqlServer.xml
+C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\System.Web.Helpers.xml
+C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\System.Web.Mvc.xml
+C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\System.Web.Optimization.xml
+C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\System.Web.Razor.xml
+C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\System.Web.WebPages.xml
+C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\System.Web.WebPages.Razor.xml
+C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\Antlr3.Runtime.pdb
+C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\Newtonsoft.Json.xml
+C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\obj\Debug\StackOverflow.Web.csprojResolveAssemblyReference.cache
+C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\obj\Debug\StackOverflow.Web.dll
+C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\obj\Debug\StackOverflow.Web.pdb
+C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\Microsoft.AspNet.Identity.EntityFramework.xml

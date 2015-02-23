@@ -1,0 +1,41 @@
+﻿@model StackOverflow.Web.Models.ProfileModel
+
+@{
+    ViewBag.Title = "ProfileView";
+}
+
+<h2>Profile</h2>
+
+<div>
+    <h4>ProfileModel</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("User Name: ")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email):
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Reputation:")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReputationScore)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+</p>

@@ -1,0 +1,53 @@
+﻿@model IEnumerable<StackOverflow.Web.Models.AnswerListModel>
+
+@{
+    ViewBag.Title = "AnswerIndex";
+}
+
+<h2>Answers</h2>
+
+<p>
+    @Html.ActionLink("New Answer", "AddNewAnswer")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Answer")
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OwnerName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Votes)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreationDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink(item.AnswerCount, "AnswerDetails","Answer", new{id = item.AnswerId},null)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OwnerName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Votes)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreationDate)
+        </td>
+        <td>
+            @*@Html.ActionLink("Edit", "Edit", new {/* id=item.PrimaryKey */}) |
+            @Html.ActionLink("Details", "Details", new {/* id=item.PrimaryKey */}) |
+            @Html.ActionLink("Delete", "Delete", new {/* id=item.PrimaryKey */})*@
+        </td>
+    </tr>
+}
+
+</table>
+
+<div> @Html.ActionLink("Back To Question", "QuestionDetails", "Question", new {id = Guid.Parse(TempData["QuestionRef"].ToString())},null)</div>
