@@ -41,6 +41,7 @@ namespace StackOverflow.Web.Controllers
 
                 model.AnswerCount = "Answer " + (count++);
                 if (q.IsBestAnswer) model.BestAnswer = "Best Answer";
+                else model.BestAnswer = "";
                 model.CreationDate = q.CreationDate;
                 model.OwnerName = q.Owner.Name;
                 model.Votes = q.Votes;

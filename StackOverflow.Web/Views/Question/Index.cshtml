@@ -5,42 +5,42 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2 style="text-decoration: underline; text-indent: 5px">Index</h2>
 
 <p>
-    @Html.ActionLink("New Question", "IndexAddQuestion")
+    <label class="label-success"style="border-radius: 24px; width: 80px; text-align: center; color: rgb(0, 153, 0)">@Html.ActionLink("New Question", "IndexAddQuestion")</label>
 </p>
 <table class="table">
-    <tr>
+    <tr style="background-color: cadetblue ">
         <th>
             @Html.DisplayNameFor(model => model.Title)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Votes)
         </th>
-        <th>
+        <th style="text-indent: 50px">
             @Html.DisplayName("Creation Date")
         </th>
-        <th>
+        <th style="text-indent: 50px">
             @Html.DisplayName("Question Owner")
         </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
+    <tr style="background-color: lightgray">
         <td>
-            @Html.ActionLink(item.Title,"QuestionDetails",new {id =item.QuestionId})
+            <b>@Html.ActionLink(item.Title,"QuestionDetails",new {id =item.QuestionId})</b>
+        </td>
+        <td style="text-indent: 12px">
+            <b>@Html.DisplayFor(modelItem => item.Votes)</b>
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Votes)
+            <b>@Html.DisplayName(item.CreationTime.ToString("D"))</b>
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.CreationTime)
-        </td>
-        <td>
-            @Html.ActionLink(item.OwnerName,"ProfileView", "Account", new {id=item.OwnerId}, null)            
-        </td>
+            <label class="label-warning" style="border-radius: 24px; width: 200px; text-align: center;">@Html.ActionLink(item.OwnerName, "ProfileView", "Account", new { id = item.OwnerId }, null)</label>
+</td>
         <td>
             @if (Context.User.Identity.IsAuthenticated && Context.User.Identity.Name == item.OwnerName)
             {
