@@ -40,6 +40,7 @@ namespace StackOverflow.Web.Controllers
                 var model = new AnswerListModel();
 
                 model.AnswerCount = "Answer " + (count++);
+                if (q.IsBestAnswer) model.BestAnswer = "Best Answer";
                 model.CreationDate = q.CreationDate;
                 model.OwnerName = q.Owner.Name;
                 model.Votes = q.Votes;
@@ -76,6 +77,7 @@ namespace StackOverflow.Web.Controllers
                     newAnswer.Owner = context.Accounts.FirstOrDefault(x => x.Id == ownerId);
                     newAnswer.ModificationDate = DateTime.Now;
                     newAnswer.CreationDate = DateTime.Now;
+                    newAnswer.IsBestAnswer = false;
                     newAnswer.QuestionReference = context.Questions.Find(id);
                     context.Answers.Add(newAnswer);
                     context.SaveChanges();
@@ -89,9 +91,10 @@ namespace StackOverflow.Web.Controllers
         public ActionResult AnswerDetails(Guid id)
         {
             var context = new StackOverflowContext();
-            var answer = context.Answers.Find(id);
+            var answer = context.Answers.Include(r => r.Owner).Include(x => x.QuestionReference).SingleOrDefault(z => z.Id == id);
             AnswerDetailModel model = _mappingEngine.Map<Answer, AnswerDetailModel>(answer);
             model.AnswerId = id;
+            model.QuestionId = answer.QuestionReference.Id;
             return View(model);
         }
 
@@ -99,8 +102,9 @@ namespace StackOverflow.Web.Controllers
         public ActionResult LikeAnswer(Guid id)
         {
             var context = new StackOverflowContext();
-
-            context.Answers.Find(id).Votes++;
+            var account = context.Answers.Find(id);
+            account.Votes++;
+            //context.Answers.Find(id).Votes++;
 
             context.SaveChanges();
 
@@ -119,7 +123,38 @@ namespace StackOverflow.Web.Controllers
             return RedirectToAction("AnswerDetails", new { id = id });
         }
 
+
+        public ActionResult SetAsBestAnswer(Guid id, Guid qId)
+        {
+            var context = new StackOverflowContext();
+            var answers = context.Answers.Include(r=>r.QuestionReference).Include(s=>s.Owner);
+            var answer = answers.FirstOrDefault(x => x.Id == id);
+            var question = context.Questions.Include(r => r.Owner).SingleOrDefault(s => s.Id == answer.QuestionReference.Id);
+            HttpCookie cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+            if (cookie != null)
+            {
+                FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(cookie.Value);
+                Guid ownerId = Guid.Parse(ticket.Name);
+                if(question.Owner.Id != ownerId)
+                    return RedirectToAction("AnswerDetails", new {id = id});
+            }
+
+            foreach (Answer ans in answers)
+            {
+                if (ans.QuestionReference.Id != qId)
+                {
+                    continue;
+                }
+
+                if (ans.Id == id)
+                    ans.IsBestAnswer = true;
+                else
+                    ans.IsBestAnswer = false;
+            }
+            context.SaveChanges();
+            return RedirectToAction("AnswerDetails", new {id = id});
+
+        }
+
     }
-
-
 }

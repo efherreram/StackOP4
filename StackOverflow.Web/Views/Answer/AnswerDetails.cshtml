@@ -12,6 +12,7 @@
 
     @Html.ActionLink("Like", "LikeAnswer","Answer", new{id = Model.AnswerId}, null)
     <div>@Html.ActionLink("Dislike", "DisLikeAnswer", "Answer", new {id = Model.AnswerId}, null)</div>
+    <div>@Html.ActionLink("Set As Best", "SetAsBestAnswer", "Answer", new {id = Model.AnswerId, qId = Model.QuestionId}, null)</div>
     <dl class="dl-horizontal">
         <dt>
             <font size=" 6"><b>@Html.DisplayName("Answer: ")</b></font>
@@ -32,5 +33,5 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Back to Index", "AnswerIndex")
+    @Html.ActionLink("Back to Index", "AnswerIndex",new{id = Model.QuestionId})
 </p>
