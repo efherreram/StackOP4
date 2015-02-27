@@ -7,4 +7,3 @@ C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Domain\bin\D
 C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Domain\bin\Debug\StackOverflow.Domain.pdb
 C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Domain\obj\Debug\StackOverflow.Domain.dll
 C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Domain\obj\Debug\StackOverflow.Domain.pdb
-C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Domain\obj\Debug\StackOverflow.Domain.csprojResolveAssemblyReference.cache

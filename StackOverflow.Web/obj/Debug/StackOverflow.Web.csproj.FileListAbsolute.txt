@@ -71,8 +71,11 @@ C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\Auto
 C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\AutoMapper.dll
 C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\EntityFramework.dll
 C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\EntityFramework.SqlServer.dll
+C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\Microsoft.AspNet.Identity.EntityFramework.dll
 C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\Newtonsoft.Json.dll
+C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\RestSharp.dll
 C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\StackOverflow.Data.dll
 C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\StackOverflow.Domain.dll
 C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\System.Web.Helpers.dll
@@ -92,6 +95,10 @@ C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\Auto
 C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\AutoMapper.Net4.pdb
 C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\EntityFramework.xml
 C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\EntityFramework.SqlServer.xml
+C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\Newtonsoft.Json.xml
+C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\RestSharp.xml
 C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\System.Web.Helpers.xml
 C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\System.Web.Mvc.xml
 C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\System.Web.Optimization.xml
@@ -100,13 +107,6 @@ C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\Syst
 C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\System.Web.WebPages.Deployment.xml
 C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\System.Web.WebPages.Razor.xml
 C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\Antlr3.Runtime.pdb
-C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\Newtonsoft.Json.xml
 C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\obj\Debug\StackOverflow.Web.csprojResolveAssemblyReference.cache
 C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\obj\Debug\StackOverflow.Web.dll
 C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\obj\Debug\StackOverflow.Web.pdb
-C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\Microsoft.AspNet.Identity.Core.dll
-C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\Microsoft.AspNet.Identity.EntityFramework.dll
-C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\Microsoft.AspNet.Identity.Core.xml
-C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\Microsoft.AspNet.Identity.EntityFramework.xml
-C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\RestSharp.dll
-C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\RestSharp.xml
