@@ -12,9 +12,12 @@ using System.Web.Routing;
 using System.Web.Security;
 using Autofac.Core;
 using AutoMapper;
+using Microsoft.Ajax.Utilities;
+using RestSharp;
 using StackOverflow.Data;
 using StackOverflow.Domain.Entities;
 using StackOverflow.Web.Models;
+using HttpCookie = System.Web.HttpCookie;
 
 namespace StackOverflow.Web.Controllers
 {
@@ -99,12 +102,13 @@ namespace StackOverflow.Web.Controllers
             {
                 return View();
             }
-            string email = account.Email;
-            var mensaje = new MailMessage("mywebsmpt@gmail.com", email);
-            mensaje.Subject = "Password Recovery";
-            mensaje.Body = account.Password;
+            
             try
             {
+                string email = account.Email;
+                var mensaje = new MailMessage("mywebsmpt@gmail.com", email);
+                mensaje.Subject = "Password Recovery";
+                mensaje.Body = account.Password;
                 mailClient.Send(mensaje);
             }
             catch (Exception ex)
@@ -114,7 +118,7 @@ namespace StackOverflow.Web.Controllers
             //if(account != null)
             //    return RedirectToAction("PasswordDisplay",new{password = account.Password});
 
-            return View();
+            return RedirectToAction("Login");
         }
 
         public ActionResult ProfileView(ProfileModel model, Guid id)
@@ -171,7 +175,5 @@ namespace StackOverflow.Web.Controllers
             }
             return new HtmlString("No");
         }
-
-        
     }
 }

@@ -7,11 +7,12 @@
 <h2 style="text-decoration: underline">Answers</h2>
 
 <p>
-    <label class="label-success" style="border-radius: 24px; width: 70px; text-align: center; color: rgb(0, 153, 0)">@Html.ActionLink("New Answer", "AddNewAnswer", TempData["QRef"] = TempData["QuestionRef"])</label>
+    @*<label class="label-success" style="border-radius: 24px; width: 70px; text-align: center; color: rgb(0, 153, 0)">@Html.ActionLink("New Answer", "AddNewAnswer", TempData["QRef"] = TempData["QuestionRef"])</label>*@
+    <button class="btn btn-success" style="width: 120px; border-radius: 24px; text-align: center"><a href="@Url.Action("AddNewAnswer", "Answer", TempData["QRef"] = TempData["QuestionRef"])" style="color: black"><b>New Answer</b></a></button>
 </p>
 <table class="table">
-    <tr style="background-color: cadetblue">
-        <th>
+    <tr style="background-color: cadetblue;">
+        <th style="text-indent: 25px">
             @Html.DisplayName("Answer")
         </th>
         <th style="text-indent: 75px">
@@ -23,17 +24,20 @@
         <th style="text-indent: 50px">
             @Html.DisplayName("Creation Date")
         </th>
-    @**@    <th> </th>
+        <th> Best Answer</th>
+        <th> Delete </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
-    <tr style="background-color: lightgray">
+    <tr style="background-color: lightgray;">
         <td>
-            @Html.ActionLink(item.AnswerCount, "AnswerDetails", "Answer", new { id = item.AnswerId }, null)
+            @*@Html.ActionLink(item.AnswerCount, "AnswerDetails", "Answer", new { id = item.AnswerId}, null)*@
+            <button class="btn btn-success" style="width: 100px; border-radius: 24px"><a href="@Url.Action("AnswerDetails", "Answer", new {id = item.AnswerId})" style="color: black"><b>@Html.DisplayName(item.AnswerCount)</b></a></button>
         </td>
         <td>
-            <label class="label-warning" style="border-radius: 24px; width: 200px; text-align: center;">@Html.DisplayFor(modelItem => item.OwnerName)</label>
+            @*<label class="label-warning" style="border-radius: 24px; width: 200px; text-align: center;">@Html.ActionLink(item.OwnerName,"ProfileView","Account",new{id = item.OwnerId},null)</label>*@
+            <button class="btn btn-warning" style="width: 200px; border-radius: 24px"><a href="@Url.Action("ProfileView", "Account", new {id = item.OwnerId})" style="color: black"><b>@Html.DisplayName(item.OwnerName)</b></a></button>
         </td>
         <td style="text-indent: 12px">
             @Html.DisplayFor(modelItem => item.Votes)
@@ -49,10 +53,25 @@
             }
         </td>
         <td>
+            @if (Context.User.Identity.IsAuthenticated)
+            {
+                if (item.OwnerId == Guid.Parse(Context.User.Identity.Name))
+                {
+                    <a href="@Url.Action("DeleteAnswer", "Answer", new{id = item.AnswerId, qId = item.QuestionId})">
+                        <img src="~/Resources/x_delete.png" style="width: 20px; height: 20px" />
+                    </a> 
+                }
+            }
+        </td>
+        <td>
         </td>
     </tr>
 }
 
 </table>
 
-<div> @Html.ActionLink("Back To Question", "QuestionDetails", "Question", new {id = Guid.Parse(TempData["QuestionRef"].ToString())},null)</div>
+<div>
+    <a href="@Url.Action("QuestionDetails", "Question", new { id = Guid.Parse(TempData["QuestionRef"].ToString())})" style="color: white">
+        <img src="~/Resources/back_arrow.png" style="height: 70px; width: 70px" />Back
+    </a>
+</div>

@@ -27,6 +27,7 @@ textarea {
 
 input,textarea {
     background-color: rgb(255, 250, 205);
+    color: black;
 }
 
 table {
@@ -34,6 +35,14 @@ table {
 }
 
 html,body {
-    background-image: url(../Resources/gplaypattern.png);
+    background-image: url(../Resources/footer_lodyas.png);
+    color: white;
 }
 
+tr {
+    color: black;
+}
+
+a:hover {
+    text-decoration: none;
+}

@@ -41,7 +41,8 @@
     </dl>
 </div>
 <p>
-    @*@Html.ActionLink("Edit", "Edit", new {/* id = Model.PrimaryKey */}) |*@
-    @Html.ActionLink("<- Back to Index", "Index")
+    <a href="@Url.Action("Index", "Question")" style="color: white">
+        <img src="~/Resources/back_arrow.png" style="height: 70px; width: 70px" />Back
+    </a>
 </p>
 

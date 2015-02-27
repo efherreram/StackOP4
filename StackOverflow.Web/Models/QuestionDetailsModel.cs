@@ -12,5 +12,6 @@ namespace StackOverflow.Web.Models
         public int Score { get; set; }
 
         public Guid QuestionId { get; set; }
+        
     }
 }

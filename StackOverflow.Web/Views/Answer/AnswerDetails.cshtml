@@ -3,8 +3,20 @@
 @{
     ViewBag.Title = "AnswerDetails";
 }
-
-<h2>Answer Details</h2>
+<div>
+    <h2>Answer Details</h2>
+    <h3>
+    @if (Context.User.Identity.IsAuthenticated)
+    {
+        if (Model.OwnerId == Guid.Parse(Context.User.Identity.Name))
+        {
+            <a href="@Url.Action("DeleteAnswer", "Answer", new {id = Model.AnswerId, qId = Model.QuestionId})">
+                <img src="~/Resources/x_delete.png" style="width: 30px; height: 30px"/>
+            </a>
+        }
+    }
+    </h3>
+</div>
 
 <div>
     <h4></h4>
@@ -33,5 +45,7 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Back to Index", "AnswerIndex",new{id = Model.QuestionId})
+    <a href="@Url.Action("AnswerIndex", "Answer", new {id = Model.QuestionId})" style="color: white">
+        <img src="~/Resources/back_arrow.png" style="height: 70px; width: 70px"/>Back
+    </a>
 </p>

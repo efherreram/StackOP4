@@ -45,7 +45,9 @@ namespace StackOverflow.Web.Controllers
                 model.CreationDate = q.CreationDate;
                 model.OwnerName = q.Owner.Name;
                 model.Votes = q.Votes;
+                model.OwnerId = q.Owner.Id;
                 model.AnswerId = q.Id;
+                model.QuestionId = q.QuestionReference.Id;
                 models.Add(model);               
             }
 
@@ -96,6 +98,7 @@ namespace StackOverflow.Web.Controllers
             AnswerDetailModel model = _mappingEngine.Map<Answer, AnswerDetailModel>(answer);
             model.AnswerId = id;
             model.QuestionId = answer.QuestionReference.Id;
+            model.OwnerId = answer.Owner.Id;
             return View(model);
         }
 
@@ -155,6 +158,16 @@ namespace StackOverflow.Web.Controllers
             context.SaveChanges();
             return RedirectToAction("AnswerDetails", new {id = id});
 
+        }
+
+        public ActionResult DeleteAnswer(Guid id, Guid qId)
+        {
+            var context = new StackOverflowContext();
+            var answer = context.Answers.Include(x=>x.Owner).Include(y=>y.QuestionReference).FirstOrDefault(z=>z.Id==id);
+            context.Answers.Remove(answer);
+            context.SaveChanges();
+
+            return RedirectToAction("AnswerIndex", new {id = qId.ToString()});
         }
 
     }

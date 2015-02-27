@@ -108,3 +108,5 @@ C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\Micr
 C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\Microsoft.AspNet.Identity.EntityFramework.dll
 C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\Microsoft.AspNet.Identity.Core.xml
 C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\RestSharp.dll
+C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\RestSharp.xml

@@ -116,5 +116,25 @@ namespace StackOverflow.Web.Controllers
 
             return RedirectToAction("QuestionDetails", new { id = id });
         }
-	}
+
+        public ActionResult DeleteQuestion(Guid id)
+        {
+            var context = new StackOverflowContext();
+            var question = context.Questions.Find(id);
+
+            var answers = context.Answers.Include(r => r.QuestionReference);
+            foreach (Answer ans in answers)
+            {
+                if (ans.QuestionReference.Id == id)
+                {
+                    context.Answers.Remove(ans);
+                }
+            }
+
+            context.Questions.Remove(question);
+            context.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+    }
 }

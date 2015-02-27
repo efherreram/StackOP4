@@ -1,17 +1,17 @@
 ﻿@using Microsoft.AspNet.Identity
+@using StackOverflow.Data.Migrations
 @model IEnumerable<StackOverflow.Web.Models.QuestionListModel>
 
 @{
     ViewBag.Title = "Index";
 }
-
 <h2 style="text-decoration: underline; text-indent: 5px">Index</h2>
 
 <p>
-    <label class="label-success"style="border-radius: 24px; width: 80px; text-align: center; color: rgb(0, 153, 0)">@Html.ActionLink("New Question", "IndexAddQuestion")</label>
+    <button class="btn btn-info" style="width: 120px; border-radius: 24px; text-align: center"><a href="@Url.Action("IndexAddQuestion", "Question")" style="color: black"><b>New Question</b></a></button>
 </p>
 <table class="table">
-    <tr style="background-color: cadetblue ">
+    <tr style="background-color: cadetblue; color: black; ">
         <th>
             @Html.DisplayNameFor(model => model.Title)
         </th>
@@ -30,7 +30,7 @@
 @foreach (var item in Model) {
     <tr style="background-color: lightgray">
         <td>
-            <b>@Html.ActionLink(item.Title,"QuestionDetails",new {id =item.QuestionId})</b>
+            <button class="btn btn-success" style="width: 200px; border-radius: 24px"><a href="@Url.Action("QuestionDetails", "Question", new {id = item.QuestionId})" style="color: black"><b>@Html.DisplayName(item.Title)</b></a></button>
         </td>
         <td style="text-indent: 12px">
             <b>@Html.DisplayFor(modelItem => item.Votes)</b>
@@ -39,16 +39,19 @@
             <b>@Html.DisplayName(item.CreationTime.ToString("D"))</b>
         </td>
         <td>
-            <label class="label-warning" style="border-radius: 24px; width: 200px; text-align: center;">@Html.ActionLink(item.OwnerName, "ProfileView", "Account", new { id = item.OwnerId }, null)</label>
-</td>
+            <button class="btn btn-warning" style="width: 200px; border-radius: 24px"><a href="@Url.Action("ProfileView", "Account", new {id = item.OwnerId})" style="color: black"><b>@Html.DisplayName(item.OwnerName)</b></a></button>
+            @*<label class="label-warning" style="border-radius: 24px; width: 200px; text-align: center;">@Html.ActionLink(item.OwnerName, "ProfileView", "Account", new {id = item.OwnerId}, null)</label>*@
+        </td>
         <td>
-            @if (Context.User.Identity.IsAuthenticated && Context.User.Identity.Name == item.OwnerName)
+            @if (Context.User.Identity.IsAuthenticated)
             {
-                <p>
-                    @Html.ActionLink("Edit", "Edit", new {id = item.QuestionId}) | 
-                    @Html.ActionLink("Delete", "Delete", new {id = item.QuestionId})
-                </p>
-            }            
+                if (item.OwnerId == Guid.Parse(Context.User.Identity.Name))
+                {
+                    <a href="@Url.Action("DeleteQuestion", "Question", new{id = item.QuestionId})">
+                        <img src="~/Resources/x_delete.png" style="width: 20px; height: 20px" />
+                    </a>
+                }
+            }     
         </td>
     </tr>
 }

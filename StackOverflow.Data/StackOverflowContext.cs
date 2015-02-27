@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.Entity;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
@@ -13,7 +14,7 @@ namespace StackOverflow.Data
     public class StackOverflowContext :DbContext
     {
 
-        public StackOverflowContext() :base("StackOverflowContext")
+        public StackOverflowContext() :base(ConnectionString.get())
         {
             
         }
@@ -22,5 +23,14 @@ namespace StackOverflow.Data
         public DbSet<Question> Questions { get; set; }
         public DbSet<Answer> Answers { get; set; } 
 
+    }
+
+    public static class ConnectionString
+    {
+        public static string get()
+        {
+            var environment = ConfigurationManager.AppSettings["Environment"];
+            return string.Format("name={0}", environment);
+        }
     }
 }
