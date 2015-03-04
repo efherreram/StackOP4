@@ -27,23 +27,40 @@ namespace StackOverflow.Web.Controllers
         
         // GET: /Question/
         [AllowAnonymous]
-        public ActionResult Index()
+        public ActionResult Index(int start = 0)
         {
             IList<QuestionListModel> models = new ListStack<QuestionListModel>();
             var context = new StackOverflowContext();
-            var que = context.Questions.Include(r =>r.Owner);
-            foreach (Question q in que)
+            var que = context.Questions.Include(r =>r.Owner).ToList();
+            //foreach (Question q in que)
+            //{
+            //    QuestionListModel model = new QuestionListModel();
+            //    model.Title = q.Title;
+            //    model.Votes = q.Votes;
+            //    model.CreationTime = q.CreationDate;
+            //    model.OwnerName = q.Owner.Name;
+            //    model.QuestionId = q.Id;
+            //    model.OwnerId = q.Owner.Id;
+            //    models.Add(model);
+            //}
+            int i;
+            for (i = start; i < start+6; i++)
             {
+                if (i == que.Count)
+                {
+                    break;
+                }
                 QuestionListModel model = new QuestionListModel();
-                model.Title = q.Title;
-                model.Votes = q.Votes;
-                model.CreationTime = q.CreationDate;
-                model.OwnerName = q.Owner.Name;
-                model.QuestionId = q.Id;
-                model.OwnerId = q.Owner.Id;
+                model.Title = que.ElementAt(i).Title;
+                model.Votes = que.ElementAt(i).Votes;
+                model.CreationTime = que.ElementAt(i).CreationDate;
+                model.OwnerName = que.ElementAt(i).Owner.Name;
+                model.QuestionId = que.ElementAt(i).Id;
+                model.OwnerId = que.ElementAt(i).Owner.Id;
                 models.Add(model);
             }
-            
+            start = i;
+            ViewData["start"] = start.ToString();
             return View(models);        
         }
 

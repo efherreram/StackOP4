@@ -171,9 +171,13 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Resources\back_arrow.png" />
+    <Content Include="Resources\Dislike.png" />
+    <Content Include="Resources\Favorite.png" />
     <Content Include="Resources\footer_lodyas.png" />
     <Content Include="Resources\gplaypattern.png" />
+    <Content Include="Resources\Like.png" />
     <Content Include="Resources\paisley.png" />
+    <Content Include="Resources\question.png" />
     <Content Include="Resources\quorra.png" />
     <Content Include="Resources\ribbon_red.png" />
     <Content Include="Resources\x_delete.png" />

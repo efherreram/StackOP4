@@ -4,7 +4,13 @@
     ViewBag.Title = "AnswerDetails";
 }
 <div>
-    <h2>Answer Details</h2>
+    <h2>
+        Answer Details
+        @if (Model.BestAnswer == "yes")
+        {
+            <img src="~/Resources/ribbon_red.png" style="width: 30px; height: 40px"/>
+        }
+    </h2>
     <h3>
     @if (Context.User.Identity.IsAuthenticated)
     {
@@ -14,6 +20,21 @@
                 <img src="~/Resources/x_delete.png" style="width: 30px; height: 30px"/>
             </a>
         }
+        <a href="@Url.Action("LikeAnswer", "Answer", new {id = Model.AnswerId})">
+            <img src="~/Resources/Like.png" style="width: 35px; height: 35px"/>
+        </a>
+
+        <a href="@Url.Action("DisLikeAnswer", "Answer", new {id = Model.AnswerId})">
+            <img src="~/Resources/Dislike.png" style="width: 35px; height: 35px"/>
+        </a>
+
+        if (Model.QuestionOwnerId == Guid.Parse(Context.User.Identity.Name))
+         {
+            <a href="@Url.Action("SetAsBestAnswer", "Answer", new {id = Model.AnswerId, qId = Model.QuestionId})">
+                <img src="~/Resources/Favorite.png" style="width: 30px; height: 30px"/>
+            </a>
+         }
+        
     }
     </h3>
 </div>
@@ -22,16 +43,16 @@
     <h4></h4>
     <hr/>
 
-    @Html.ActionLink("Like", "LikeAnswer","Answer", new{id = Model.AnswerId}, null)
+    @*@Html.ActionLink("Like", "LikeAnswer","Answer", new{id = Model.AnswerId}, null)
     <div>@Html.ActionLink("Dislike", "DisLikeAnswer", "Answer", new {id = Model.AnswerId}, null)</div>
-    <div>@Html.ActionLink("Set As Best", "SetAsBestAnswer", "Answer", new {id = Model.AnswerId, qId = Model.QuestionId}, null)</div>
+    <div>@Html.ActionLink("Set As Best", "SetAsBestAnswer", "Answer", new {id = Model.AnswerId, qId = Model.QuestionId}, null)</div>*@
     <dl class="dl-horizontal">
         <dt>
             <font size=" 6"><b>@Html.DisplayName("Answer: ")</b></font>
         </dt>
 
         <dd>
-            @Html.TextAreaFor(model => model.AnswerText,new{@readonly = true})
+            @Html.TextAreaFor(model => model.AnswerText, new {@readonly = true})
         </dd>
 
         <dt>

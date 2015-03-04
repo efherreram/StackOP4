@@ -1,59 +1,101 @@
 ﻿@using Microsoft.AspNet.Identity
 @using StackOverflow.Data.Migrations
+@using StackOverflow.Web.Models
 @model IEnumerable<StackOverflow.Web.Models.QuestionListModel>
 
 @{
     ViewBag.Title = "Index";
 }
-<h2 style="text-decoration: underline; text-indent: 5px">Index</h2>
 
-<p>
-    <button class="btn btn-info" style="width: 120px; border-radius: 24px; text-align: center"><a href="@Url.Action("IndexAddQuestion", "Question")" style="color: black"><b>New Question</b></a></button>
-</p>
-<table class="table">
-    <tr style="background-color: cadetblue; color: black; ">
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Votes)
-        </th>
-        <th style="text-indent: 50px">
-            @Html.DisplayName("Creation Date")
-        </th>
-        <th style="text-indent: 50px">
-            @Html.DisplayName("Question Owner")
-        </th>
-        <th></th>
-    </tr>
+                      <div id="masthead">
+                          <div class="container">
+                              <div class="row">
+                                  <div class="col-md-7">
+                                      <h1>
+                                          Questions
+                                          <p class="lead"></p>
+                                      </h1>
+                                  </div>
+                                  <div class="col-md-5">
+                                      <div class="well well-lg">
+                                          <div class="row">
+                                              <div class="col-sm-12">
 
-@foreach (var item in Model) {
-    <tr style="background-color: lightgray">
-        <td>
-            <button class="btn btn-success" style="width: 200px; border-radius: 24px"><a href="@Url.Action("QuestionDetails", "Question", new {id = item.QuestionId})" style="color: black"><b>@Html.DisplayName(item.Title)</b></a></button>
-        </td>
-        <td style="text-indent: 12px">
-            <b>@Html.DisplayFor(modelItem => item.Votes)</b>
-        </td>
-        <td>
-            <b>@Html.DisplayName(item.CreationTime.ToString("D"))</b>
-        </td>
-        <td>
-            <button class="btn btn-warning" style="width: 200px; border-radius: 24px"><a href="@Url.Action("ProfileView", "Account", new {id = item.OwnerId})" style="color: black"><b>@Html.DisplayName(item.OwnerName)</b></a></button>
-            @*<label class="label-warning" style="border-radius: 24px; width: 200px; text-align: center;">@Html.ActionLink(item.OwnerName, "ProfileView", "Account", new {id = item.OwnerId}, null)</label>*@
-        </td>
-        <td>
-            @if (Context.User.Identity.IsAuthenticated)
-            {
-                if (item.OwnerId == Guid.Parse(Context.User.Identity.Name))
-                {
-                    <a href="@Url.Action("DeleteQuestion", "Question", new{id = item.QuestionId})">
-                        <img src="~/Resources/x_delete.png" style="width: 20px; height: 20px" />
-                    </a>
-                }
-            }     
-        </td>
-    </tr>
-}
 
-</table>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div><!-- /cont -->
+
+                          <div class="container">
+                              <div class="row">
+                                  <div class="col-md-12">
+                                      <div class="top-spacer"> </div>
+                                  </div>
+                              </div>
+                          </div><!-- /cont -->
+
+                      </div>
+
+
+                      <div class="container">
+                          <div class="row">
+
+                              <div class="col-md-12">
+
+                                  <div class="panel">
+                                      <div class="panel-body">
+
+                                          @foreach (var item in Model)
+                                          {
+                                                <div class="row">
+                                              <br>
+                                              <div class="col-md-2 col-sm-3 text-center">
+                                                  <a class="story-title" href="#"><img alt="" src="~/Resources/question.png" style="width: 100px; height: 100px" class="img-circle"></a>
+                                              </div>
+                                              <div class="col-md-10 col-sm-9">
+                                                  <h3>Repurpose Content to Reach a Wider Audience</h3>
+                                                  <div class="row">
+                                                      <div class="col-xs-9">
+                                                          <h4><span class="label label-default">@Html.DisplayFor(modelItem => item.Title)</span></h4><h4>
+                                                              <small style="font-family: courier, 'new courier';" class="text-muted">@Html.DisplayName(item.CreationTime.ToString("D")) • <a href="@Url.Action("QuestionDetails", "Question", new {id = item.QuestionId})" class="text-muted">Read More</a></small>
+                                                          </h4>
+                                                          <h5>
+                                                              <small style="font-family: courier, 'new courier';" class="text-muted"> By: <a href="@Url.Action("ProfileView", "Account", new {id = item.OwnerId})" class="text-muted">@Html.DisplayFor(i => item.OwnerName)</a></small>
+                                                          </h5>
+                                                          <h5>
+                                                              <small style="font-family: courier, 'new courier';" class="text-muted"> Votes: @Html.DisplayFor(i => item.Votes)</small>
+                                                          </h5>
+                                                      </div>
+                                                      <div class="col-xs-3"></div>
+                                                  </div>
+                                                  <br><br>
+                                              </div>
+                                          </div>
+                                          <hr>
+                                          }
+                                          <a href="@Url.Action("Index", new{start = int.Parse(ViewData["start"].ToString())})" class="btn btn-primary pull-right btnNext">More <i class="glyphicon glyphicon-chevron-right"></i></a>
+                                          <a href="@Url.Action("IndexAddQuestion")" class="btn btn-primary pull-right btnNext">Add Question</a>
+
+
+                                      </div>
+                                  </div>
+
+
+
+                              </div><!--/col-12-->
+                          </div>
+                      </div>
+
+
+
+
+                      
+
+<script src="~/Scripts/alertify/alertify.min.js"></script>
+<link rel="stylesheet" href="~/Content/alertify/alertify.core.css"/>
+<link rel="stylesheet" href="~/Content/alertify/alertify.default.css"/>
+<link rel="stylesheet" href="~/Content/alertify/alertify.bootstrap.css" />
+

@@ -45,14 +45,14 @@
         <td>
             @Html.DisplayName(item.CreationDate.ToString("D"))
         </td>
-        <td>
+        <td style="text-indent: 30px">
             @*<label class="label-success" style="border-radius: 24px">@Html.DisplayFor(modelItem => item.BestAnswer)</label>*@
             @if (item.BestAnswer != "")
             {
-                <img src="~/Resources/ribbon_red.png" style="width: 50px; height: 70px"/>
+                <img src="~/Resources/ribbon_red.png" style="width: 20px; height: 30px"/>
             }
         </td>
-        <td>
+        <td style="text-indent: 10px">
             @if (Context.User.Identity.IsAuthenticated)
             {
                 if (item.OwnerId == Guid.Parse(Context.User.Identity.Name))

@@ -94,11 +94,13 @@ namespace StackOverflow.Web.Controllers
         public ActionResult AnswerDetails(Guid id)
         {
             var context = new StackOverflowContext();
-            var answer = context.Answers.Include(r => r.Owner).Include(x => x.QuestionReference).SingleOrDefault(z => z.Id == id);
+            var answer = context.Answers.Include(r => r.Owner).Include(x => x.QuestionReference).Include(m=>m.QuestionReference.Owner).SingleOrDefault(z => z.Id == id);
             AnswerDetailModel model = _mappingEngine.Map<Answer, AnswerDetailModel>(answer);
             model.AnswerId = id;
             model.QuestionId = answer.QuestionReference.Id;
             model.OwnerId = answer.Owner.Id;
+            model.QuestionOwnerId = answer.QuestionReference.Owner.Id;
+            model.BestAnswer = (answer.IsBestAnswer ? "yes" : "no");
             return View(model);
         }
 
