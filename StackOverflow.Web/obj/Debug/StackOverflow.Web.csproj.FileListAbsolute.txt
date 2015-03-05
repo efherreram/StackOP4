@@ -110,3 +110,9 @@ C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\Antl
 C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\obj\Debug\StackOverflow.Web.csprojResolveAssemblyReference.cache
 C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\obj\Debug\StackOverflow.Web.dll
 C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\obj\Debug\StackOverflow.Web.pdb
+C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\System.Net.Http.Formatting.dll
+C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\System.Web.Http.dll
+C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\System.Web.Http.WebHost.dll
+C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\System.Net.Http.Formatting.xml
+C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\System.Web.Http.xml
+C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\System.Web.Http.WebHost.xml

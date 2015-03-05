@@ -4,74 +4,106 @@
     ViewBag.Title = "AnswerIndex";
 }
 
-<h2 style="text-decoration: underline">Answers</h2>
+                      <div id="masthead">
+                          <div class="container">
+                              <div class="row">
+                                  <div class="col-md-7">
+                                      <h1>
+                                          Answers
+                                          <p class="lead"></p>
+                                      </h1>
+                                  </div>
+                                  <div class="col-md-5">
+                                      <div class="well well-lg">
+                                          <div class="row">
+                                              <div class="col-sm-12">
 
-<p>
-    @*<label class="label-success" style="border-radius: 24px; width: 70px; text-align: center; color: rgb(0, 153, 0)">@Html.ActionLink("New Answer", "AddNewAnswer", TempData["QRef"] = TempData["QuestionRef"])</label>*@
-    <button class="btn btn-success" style="width: 120px; border-radius: 24px; text-align: center"><a href="@Url.Action("AddNewAnswer", "Answer", TempData["QRef"] = TempData["QuestionRef"])" style="color: black"><b>New Answer</b></a></button>
-</p>
-<table class="table">
-    <tr style="background-color: cadetblue;">
-        <th style="text-indent: 25px">
-            @Html.DisplayName("Answer")
-        </th>
-        <th style="text-indent: 75px">
-            @Html.DisplayName("Creator")
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Votes)
-        </th>
-        <th style="text-indent: 50px">
-            @Html.DisplayName("Creation Date")
-        </th>
-        <th> Best Answer</th>
-        <th> Delete </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr style="background-color: lightgray;">
-        <td>
-            @*@Html.ActionLink(item.AnswerCount, "AnswerDetails", "Answer", new { id = item.AnswerId}, null)*@
-            <button class="btn btn-success" style="width: 100px; border-radius: 24px"><a href="@Url.Action("AnswerDetails", "Answer", new {id = item.AnswerId})" style="color: black"><b>@Html.DisplayName(item.AnswerCount)</b></a></button>
-        </td>
-        <td>
-            @*<label class="label-warning" style="border-radius: 24px; width: 200px; text-align: center;">@Html.ActionLink(item.OwnerName,"ProfileView","Account",new{id = item.OwnerId},null)</label>*@
-            <button class="btn btn-warning" style="width: 200px; border-radius: 24px"><a href="@Url.Action("ProfileView", "Account", new {id = item.OwnerId})" style="color: black"><b>@Html.DisplayName(item.OwnerName)</b></a></button>
-        </td>
-        <td style="text-indent: 12px">
-            @Html.DisplayFor(modelItem => item.Votes)
-        </td>
-        <td>
-            @Html.DisplayName(item.CreationDate.ToString("D"))
-        </td>
-        <td style="text-indent: 30px">
-            @*<label class="label-success" style="border-radius: 24px">@Html.DisplayFor(modelItem => item.BestAnswer)</label>*@
-            @if (item.BestAnswer != "")
-            {
-                <img src="~/Resources/ribbon_red.png" style="width: 20px; height: 30px"/>
-            }
-        </td>
-        <td style="text-indent: 10px">
-            @if (Context.User.Identity.IsAuthenticated)
-            {
-                if (item.OwnerId == Guid.Parse(Context.User.Identity.Name))
-                {
-                    <a href="@Url.Action("DeleteAnswer", "Answer", new{id = item.AnswerId, qId = item.QuestionId})">
-                        <img src="~/Resources/x_delete.png" style="width: 20px; height: 20px" />
-                    </a> 
-                }
-            }
-        </td>
-        <td>
-        </td>
-    </tr>
-}
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div><!-- /cont -->
 
-</table>
+                          <div class="container">
+                              <div class="row">
+                                  <div class="col-md-12">
+                                      <div class="top-spacer"> </div>
+                                  </div>
+                              </div>
+                          </div><!-- /cont -->
 
-<div>
-    <a href="@Url.Action("QuestionDetails", "Question", new { id = Guid.Parse(TempData["QuestionRef"].ToString())})" style="color: white">
-        <img src="~/Resources/back_arrow.png" style="height: 70px; width: 70px" />Back
-    </a>
-</div>
+                      </div>
+
+
+                      <div class="container">
+                          <div class="row">
+
+                              <div class="col-md-12">
+
+                                  <div class="panel">
+                                      <div class="panel-body">
+
+                                          @foreach (var item in Model)
+                                          {
+                                              <div class="row">
+                                                  <br>
+                                                  <div class="col-md-2 col-sm-3 text-center">
+                                                      <a class="story-title" href="#"><img alt="" src="~/Resources/answer.jpg" style="width: 100px; height: 100px" class="img-circle"></a>
+                                                  </div>
+                                                  <div class="col-md-10 col-sm-9">
+                                                      <h3>Repurpose Content to Reach a Wider Audience</h3>
+                                                      <div class="row">
+                                                          <div class="col-xs-9">
+                                                              <h4>
+                                                                  <span class="label label-default">@Html.DisplayFor(modelItem => item.AnswerCount)</span>
+                                                                  @if (item.BestAnswer != "")
+                                                                  {
+                                                                      <img src="~/Resources/ribbon_red.png" style="width: 20px; height: 30px" />
+                                                                  }
+                                                              </h4>
+                                                              <h4>
+                                                                  <small style="font-family: courier, 'new courier';" class="text-muted">@Html.DisplayName(item.CreationDate.ToString("D")) • <a href="@Url.Action("AnswerDetails", "Answer", new {id = item.AnswerId}, null)" class="text-muted">Details</a></small>
+                                                              </h4>
+                                                              <h5>
+                                                                  <small style="font-family: courier, 'new courier';" class="text-muted"> By: <a href="@Url.Action("ProfileView", "Account", new {id = item.OwnerId})" class="text-muted">@Html.DisplayFor(i => item.OwnerName)</a></small>
+                                                              </h5>
+                                                              <h5>
+                                                                  <small style="font-family: courier, 'new courier';" class="text-muted"> Votes: @Html.DisplayFor(i => item.Votes)</small>
+                                                              </h5>
+
+                                                              @if (Context.User.Identity.IsAuthenticated)
+                                                              {
+                                                                  if (item.OwnerId == Guid.Parse(Context.User.Identity.Name))
+                                                                  {
+                                                                      <h5>
+                                                                          <a href="@Url.Action("DeleteAnswer", "Answer", new {id = item.AnswerId, qId = item.QuestionId})">
+                                                                              <img src="~/Resources/x_delete.png" style="width: 20px; height: 20px" />
+                                                                          </a>
+                                                                      </h5>
+                                                                  }
+
+                                                              }
+
+                                                          </div>
+                                                          <div class="col-xs-3"></div>
+                                                      </div>
+                                                      <br><br>
+                                                  </div>
+                                              </div>
+                                              <hr>
+                                          }
+                                          @*<a href="@Url.Action("Index", new{start = int.Parse(ViewData["start"].ToString())})" class="btn btn-primary pull-right btnNext">More <i class="glyphicon glyphicon-chevron-right"></i></a>*@
+                                          <a href="@Url.Action("AddNewAnswer", "Answer", TempData["QRef"] = TempData["QuestionRef"])" class="btn btn-primary pull-right btnNext">Add Answer</a>
+
+
+                                      </div>
+                                  </div>
+
+
+
+                              </div><!--/col-12-->
+                          </div>
+                      </div>
+

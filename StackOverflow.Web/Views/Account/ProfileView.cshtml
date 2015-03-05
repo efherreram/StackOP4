@@ -4,37 +4,69 @@
     ViewBag.Title = "ProfileView";
 }
 
-<h2>Profile</h2>
+<div id="masthead">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7">
+                <h1>
+                    @Html.DisplayFor(i=>Model.UserName)
+                </h1>
+            </div>
+            <div class="col-md-5">
+                <div class="well well-lg">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            Ad Space
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- /cont -->
 
-<div>
-    <h4></h4>
-	<hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayName("User Name: ")
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.UserName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Email):
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-
-        <dt>
-            @Html.DisplayName("Reputation:")
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ReputationScore)
-        </dd>
-
-    </dl>
 </div>
-<p>
-</p>
+
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-12">
+
+            <div class="panel">
+                <div class="panel-body">
+
+
+                    <!--/stories-->
+                    <div class="row">
+                        <br>
+                        <div class="col-md-2 col-sm-3 text-center">
+                            <a class="story-img" href="#"><img src="~/Resources/User.png" style="width:100px;height:100px" class="img-circle"></a>
+                        </div>
+                        <div class="col-md-10 col-sm-9">
+                            <h3>Post Entry Title</h3>
+                            <div class="row">
+                                <div class="col-xs-9">
+                                    <p>
+                                        Email: @Html.DisplayFor(i=>Model.Email)
+                                    </p>
+                                    <p>
+                                        Reputation: @Html.DisplayFor(i=>Model.ReputationScore)
+                                    </p>
+                                </div>
+                                <div class="col-xs-3"></div>
+                            </div>
+                            <br><br>
+                        </div>
+                    </div>
+                    <hr>
+
+                </div>
+            </div>
+
+
+
+        </div><!--/col-12-->
+    </div>
+</div>
+
