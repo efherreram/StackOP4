@@ -8,7 +8,6 @@
 
 <div>
     <h4></h4>
-    <hr/>
     @Html.ActionLink("Like", "LikeQuestion", "Question", new { id = Model.QuestionId }, null)
     <div>@Html.ActionLink("Dislike", "DisLikeQuestion", "Question", new { id = Model.QuestionId }, null)</div>
     <dl class="dl-horizontal">
@@ -35,9 +34,9 @@
         <dd>
             @Html.DisplayFor(model => model.Score)
         </dd>
-        <dd>
+        @*<dd>
             @Html.ActionLink("Answers", "AnswerIndex","Answer",new{id = Model.QuestionId},null)
-        </dd>
+        </dd>*@
     </dl>
 </div>
 <p>
@@ -45,4 +44,9 @@
         <img src="~/Resources/back_arrow.png" style="height: 70px; width: 70px"/>Back
     </a>
 </p>
+
+<hr>
+<div>
+  @{ Html.RenderAction("AnswerIndex", "Answer", new {id = Model.QuestionId});}
+</div>
 

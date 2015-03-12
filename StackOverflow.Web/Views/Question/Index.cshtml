@@ -7,16 +7,16 @@
     ViewBag.Title = "Index";
 }
 
-                      <div id="masthead">
-                          <div class="container">
-                              <div class="row">
-                                  <div class="col-md-7">
-                                      <h1>
-                                          Questions
-                                          <p class="lead"></p>
-                                      </h1>
-                                  </div>
-                                  <div class="col-md-5">
+<div id="masthead">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7">
+                <h1>
+                    Questions
+                    <p class="lead"></p>
+                </h1>
+            </div>
+            @*<div class="col-md-5">
                                       <div class="well well-lg">
                                           <div class="row">
                                               <div class="col-sm-12">
@@ -25,85 +25,87 @@
                                               </div>
                                           </div>
                                       </div>
-                                  </div>
-                              </div>
-                          </div><!-- /cont -->
+                                  </div>*@
+        </div>
+    </div><!-- /cont -->
 
-                          <div class="container">
-                              <div class="row">
-                                  <div class="col-md-12">
-                                      <div class="top-spacer"> </div>
-                                  </div>
-                              </div>
-                          </div><!-- /cont -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="top-spacer"> </div>
+            </div>
+        </div>
+    </div><!-- /cont -->
 
-                      </div>
-
-
-                      <div class="container">
-                          <div class="row">
-
-                              <div class="col-md-12">
-
-                                  <div class="panel">
-                                      <div class="panel-body">
-
-                                          @foreach (var item in Model)
-                                          {
-                                                <div class="row">
-                                              <br>
-                                              <div class="col-md-2 col-sm-3 text-center">
-                                                  <a class="story-title" href="#"><img alt="" src="~/Resources/question.png" style="width: 100px; height: 100px" class="img-circle"></a>
-                                              </div>
-                                              <div class="col-md-10 col-sm-9">
-                                                  <h3>Repurpose Content to Reach a Wider Audience</h3>
-                                                  <div class="row">
-                                                      <div class="col-xs-9">
-                                                          <h4><span class="label label-default">@Html.DisplayFor(modelItem => item.Title)</span></h4><h4>
-                                                              <small style="font-family: courier, 'new courier';" class="text-muted">@Html.DisplayName(item.CreationTime.ToString("D")) • <a href="@Url.Action("QuestionDetails", "Question", new {id = item.QuestionId})" class="text-muted">Details</a></small>
-                                                          </h4>
-                                                          <h5>
-                                                              <small style="font-family: courier, 'new courier';" class="text-muted"> By: <a href="@Url.Action("ProfileView", "Account", new {id = item.OwnerId})" class="text-muted">@Html.DisplayFor(i => item.OwnerName)</a></small>
-                                                          </h5>
-                                                          <h5>
-                                                              <small style="font-family: courier, 'new courier';" class="text-muted"> Votes: @Html.DisplayFor(i => item.Votes)</small>
-                                                          </h5>
-
-                                                          @if (Context.User.Identity.IsAuthenticated)
-                                                          {
-                                                              if (item.OwnerId == Guid.Parse(Context.User.Identity.Name))
-                                                              {
-                                                                 <h5>
-                                                                    <a href="@Url.Action("DeleteQuestion", "Question", new {id = item.QuestionId})">
-                                                                      <img src="~/Resources/x_delete.png" style="width: 20px; height: 20px" />
-                                                                    </a>
-                                                                 </h5> 
-                                                              }
-                                                              
-                                                          }
-
-                                                      </div>
-                                                      <div class="col-xs-3"></div>
-                                                  </div>
-                                                  <br><br>
-                                              </div>
-                                          </div>
-                                          <hr>
-                                          }
-                                          <a href="@Url.Action("Index", new{start = int.Parse(ViewData["start"].ToString())})" class="btn btn-primary pull-right btnNext">More <i class="glyphicon glyphicon-chevron-right"></i></a>
-                                          <a href="@Url.Action("IndexAddQuestion")" class="btn btn-primary pull-right btnNext">Add Question</a>
-
-
-                                      </div>
-                                  </div>
+</div>
 
 
 
-                              </div><!--/col-12-->
-                          </div>
-                      </div>
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-12">
+
+            <div class="panel">
+                <div class="panel-body">
+
+                    @foreach (var item in Model)
+                    {
+                        <div class="row">
+                            <br>
+                            <div class="col-md-2 col-sm-3 text-center">
+                                <a class="story-title" href="#"><img alt="" src="~/Resources/question.png" style="width: 100px; height: 100px" class="img-circle"></a>
+                            </div>
+                            <div class="col-md-10 col-sm-9">
+                                <h3>Repurpose Content to Reach a Wider Audience</h3>
+                                <div class="row">
+                                    <div class="col-xs-9">
+                                        <h4><span class="label label-default">@Html.DisplayFor(modelItem => item.Title)</span></h4><h4>
+                                            <small style="font-family: courier, 'new courier';" class="text-muted">@Html.DisplayFor(i => item.QuestionPreview) • <a href="@Url.Action("QuestionDetails", "Question", new {id = item.QuestionId})" class="text-muted">Read More</a></small>
+                                        </h4>
+                                        <h4>
+                                            <small style="font-family: courier, 'new courier';" class="text-muted">@Html.DisplayName(item.CreationTime.ToString("D"))</small>
+                                        </h4>
+                                        <h5>
+                                            <small style="font-family: courier, 'new courier';" class="text-muted"> By: <a href="@Url.Action("ProfileView", "Account", new {id = item.OwnerId})" class="text-muted">@Html.DisplayFor(i => item.OwnerName)</a></small>
+                                        </h5>
+                                        <h5>
+                                            <small style="font-family: courier, 'new courier';" class="text-muted"> Votes: @Html.DisplayFor(i => item.Votes)</small>
+                                        </h5>
+
+                                        @if (Context.User.Identity.IsAuthenticated)
+                                        {
+                                            if (item.OwnerId == Guid.Parse(Context.User.Identity.Name))
+                                            {
+                                                <h5>
+                                                    <a href="@Url.Action("DeleteQuestion", "Question", new {id = item.QuestionId})" onclick=" return confirm('Are you Sure?') ">
+                                                        <img src="~/Resources/x_delete.png" style="width: 20px; height: 20px"/>
+                                                    </a>
+                                                </h5>
+                                            }
+
+                                        }
+
+                                    </div>
+                                    <div class="col-xs-3"></div>
+                                </div>
+                                <br><br>
+                            </div>
+                        </div>
+                        <hr>
+                    }
+                    <a href="@Url.Action("Index", new {start = int.Parse(ViewData["start"].ToString())})" class="btn btn-primary pull-right btnNext">More <i class="glyphicon glyphicon-chevron-right"></i></a>
+                    <a href="@Url.Action("IndexAddQuestion")" class="btn btn-primary pull-right btnNext">Add Question</a>
 
 
+                </div>
+            </div>
+
+
+
+        </div><!--/col-12-->
+    </div>
+</div>
 
 
                       

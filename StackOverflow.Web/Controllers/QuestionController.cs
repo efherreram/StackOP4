@@ -57,6 +57,7 @@ namespace StackOverflow.Web.Controllers
                 model.OwnerName = que.ElementAt(i).Owner.Name;
                 model.QuestionId = que.ElementAt(i).Id;
                 model.OwnerId = que.ElementAt(i).Owner.Id;
+                model.QuestionPreview = que.ElementAt(i).Description.Substring(0, 2) + "...";
                 models.Add(model);
             }
             start = i;

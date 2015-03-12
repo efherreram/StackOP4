@@ -11,7 +11,7 @@ namespace StackOverflow.Web.Models
         public int Votes { get; set; }
         public DateTime CreationTime { get; set; }
         public string OwnerName { get; set; }
-
+        public string QuestionPreview { get; set; }
         public Guid OwnerId { get; set; }
         public Guid QuestionId { get; set; }
     }

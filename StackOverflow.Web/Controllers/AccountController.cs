@@ -42,6 +42,7 @@ namespace StackOverflow.Web.Controllers
         {
             if (ModelState.IsValid)
             {
+
                 var context = new StackOverflowContext();
                 var account = _mappingEngine.Map<AccountRegisterModel, Account>(model);
                 context.Accounts.Add(account);

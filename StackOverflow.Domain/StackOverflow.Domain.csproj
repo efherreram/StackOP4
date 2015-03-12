@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomDataNotations\PasswordAttribute.cs" />
     <Compile Include="Entities\Account.cs" />
     <Compile Include="Entities\Answer.cs" />
     <Compile Include="Entities\Encrypter.cs" />

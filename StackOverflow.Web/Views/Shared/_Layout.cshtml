@@ -8,6 +8,28 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+
+    <script src="~/Scripts/alertify/alertify.min.js"></script>
+    <link rel="stylesheet" href="~/Content/alertify/alertify.core.css" />
+    <link rel="stylesheet" href="~/Content/alertify/alertify.default.css" />
+    <link rel="stylesheet" href="~/Content/alertify/alertify.bootstrap.css"/>
+    @*<script>
+        function confirmMessage(message) {
+            alertify.confirm(message, function (e) {
+                if (e) {
+                    alertify.success("You pressed '" + alertify.labels.ok + "'");
+                    return true;
+                } else {
+                    alertify.error("You pressed '" + alertify.labels.cancel + "'");
+                    return false;
+                }
+            });
+            return false;
+        }
+    </script>*@
+
+
+
 </head>
 <body>
 <div class="navbar navbar-inverse navbar-fixed-top">

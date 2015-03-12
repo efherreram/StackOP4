@@ -48,10 +48,12 @@ namespace StackOverflow.Web.Controllers
                 model.OwnerId = q.Owner.Id;
                 model.AnswerId = q.Id;
                 model.QuestionId = q.QuestionReference.Id;
-                models.Add(model);               
+                model.AnswerText = q.AnswerText;
+                model.QuestionOwnerId = q.QuestionReference.Owner.Id;
+                models.Add(model);   
             }
 
-            return View(models);
+            return PartialView(models);
         }
 
         [Authorize]
@@ -85,7 +87,7 @@ namespace StackOverflow.Web.Controllers
                     context.Answers.Add(newAnswer);
                     context.SaveChanges();
                 }
-                return RedirectToAction("AnswerIndex", new{id = QuestionId});
+                return RedirectToAction("QuestionDetails","Question", new{id = QuestionId});
             }
             return View();
         }
@@ -105,7 +107,7 @@ namespace StackOverflow.Web.Controllers
         }
 
         [Authorize]
-        public ActionResult LikeAnswer(Guid id)
+        public ActionResult LikeAnswer(Guid id, Guid qId)
         {
             var context = new StackOverflowContext();
             var account = context.Answers.Find(id);
@@ -114,11 +116,11 @@ namespace StackOverflow.Web.Controllers
 
             context.SaveChanges();
 
-            return RedirectToAction("AnswerDetails", new{id = id});
+            return RedirectToAction("QuestionDetails","Question", new{id = qId});
         }
 
         [Authorize]
-        public ActionResult DisLikeAnswer(Guid id)
+        public ActionResult DisLikeAnswer(Guid id, Guid qId)
         {
             var context = new StackOverflowContext();
 
@@ -126,7 +128,7 @@ namespace StackOverflow.Web.Controllers
 
             context.SaveChanges();
 
-            return RedirectToAction("AnswerDetails", new { id = id });
+            return RedirectToAction("QuestionDetails", "Question", new { id = qId });
         }
 
 
@@ -142,7 +144,7 @@ namespace StackOverflow.Web.Controllers
                 FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(cookie.Value);
                 Guid ownerId = Guid.Parse(ticket.Name);
                 if(question.Owner.Id != ownerId)
-                    return RedirectToAction("AnswerDetails", new {id = id});
+                    return RedirectToAction("QuestionDetails","Question", new {id = qId});
             }
 
             foreach (Answer ans in answers)
@@ -169,7 +171,7 @@ namespace StackOverflow.Web.Controllers
             context.Answers.Remove(answer);
             context.SaveChanges();
 
-            return RedirectToAction("AnswerIndex", new {id = qId.ToString()});
+            return RedirectToAction("QuestionDetails","Question", new {id = qId});
         }
 
     }

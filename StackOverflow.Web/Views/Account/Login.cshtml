@@ -8,7 +8,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-
+    
     <div class="form-horizontal">
         <h4></h4>
         <hr />
@@ -36,11 +36,11 @@
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <div class="row">
-                    <input type="submit" value="Log in" class="btn btn-success" />
+                    <input type="submit" value="Log in" class="btn btn-success"/>
                 </div>
                 <div class="col">
                     @Html.ActionLink("Forgot Password", "PasswordRecovery")
-                    <div>Don't have an account? @Html.ActionLink("Sign Up", "Register")</div>
+                    <div>Don't have an account? @Html.ActionLink("Sign Up", "Register")</div>                 
                 </div>
             </div>
         </div>

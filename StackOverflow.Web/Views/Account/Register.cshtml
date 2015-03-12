@@ -1,4 +1,5 @@
-﻿@model StackOverflow.Web.Models.AccountRegisterModel
+﻿@using System.Runtime.Remoting.Messaging
+@model StackOverflow.Web.Models.AccountRegisterModel
 
 @{
     ViewBag.Title = "Register";
@@ -48,8 +49,8 @@
         </div>
 
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <div><input type="submit" value="Register" class="btn btn-default"/> or @Html.ActionLink("Sign In", "Login")</div>               
+            <div class="col-md-offset-2 col-md-10">                
+                <div><input type="submit" value="Register" class="btn btn-default"/> or @Html.ActionLink("Sign In", "Login")</div>
             </div>
         </div>
     </div>
