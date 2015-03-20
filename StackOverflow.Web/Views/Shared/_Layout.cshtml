@@ -13,20 +13,16 @@
     <link rel="stylesheet" href="~/Content/alertify/alertify.core.css" />
     <link rel="stylesheet" href="~/Content/alertify/alertify.default.css" />
     <link rel="stylesheet" href="~/Content/alertify/alertify.bootstrap.css"/>
-    @*<script>
+    <script>
         function confirmMessage(message) {
-            alertify.confirm(message, function (e) {
-                if (e) {
-                    alertify.success("You pressed '" + alertify.labels.ok + "'");
-                    return true;
-                } else {
-                    alertify.error("You pressed '" + alertify.labels.cancel + "'");
-                    return false;
-                }
+            var isTrue = false;
+            alertify.confirm(message, function(e) {
+                if (e) alertify.success("success");
+                else alertify.error("error");
             });
             return false;
         }
-    </script>*@
+    </script>
 
 
 

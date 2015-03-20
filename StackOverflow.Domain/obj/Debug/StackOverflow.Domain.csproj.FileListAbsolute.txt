@@ -8,3 +8,9 @@ C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Domain\bin\D
 C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Domain\obj\Debug\StackOverflow.Domain.dll
 C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Domain\obj\Debug\StackOverflow.Domain.pdb
 C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Domain\obj\Debug\StackOverflow.Domain.csprojResolveAssemblyReference.cache
+C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Domain\bin\Debug\System.Web.Http.dll
+C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Domain\bin\Debug\System.Web.Mvc.dll
+C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Domain\bin\Debug\System.Web.Http.xml
+C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Domain\bin\Debug\System.Web.Mvc.xml
+C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Domain\bin\Debug\RestSharp.dll
+C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Domain\bin\Debug\RestSharp.xml

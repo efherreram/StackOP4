@@ -19,3 +19,7 @@ C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Data\obj\Deb
 C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Data\obj\Debug\StackOverflow.Data.csproj.GenerateResource.Cache
 C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Data\obj\Debug\StackOverflow.Data.dll
 C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Data\obj\Debug\StackOverflow.Data.pdb
+C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Data\bin\Debug\System.Web.Mvc.dll
+C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Data\bin\Debug\System.Web.Mvc.xml
+C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Data\bin\Debug\RestSharp.dll
+C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Data\bin\Debug\RestSharp.xml

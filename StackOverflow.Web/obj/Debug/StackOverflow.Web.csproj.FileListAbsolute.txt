@@ -116,3 +116,5 @@ C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\Syst
 C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\System.Net.Http.Formatting.xml
 C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\System.Web.Http.xml
 C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\System.Web.Http.WebHost.xml
+C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\log4net.dll
+C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Web\bin\log4net.xml

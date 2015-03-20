@@ -57,6 +57,9 @@
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.0\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
@@ -163,6 +166,7 @@
     <Compile Include="Models\AddNewQuestionModel.cs" />
     <Compile Include="Models\AnswerDetailModel.cs" />
     <Compile Include="Models\AnswerListModel.cs" />
+    <Compile Include="Models\ChangePasswordModel.cs" />
     <Compile Include="Models\PasswordDisplayModel.cs" />
     <Compile Include="Models\QuestionDetailsModel.cs" />
     <Compile Include="Models\PasswordRecovery.cs" />
@@ -262,6 +266,7 @@
     <Content Include="Views\Answer\AddNewAnswer.cshtml" />
     <Content Include="Views\Answer\AnswerDetails.cshtml" />
     <Content Include="Views\Account\PasswordDisplay.cshtml" />
+    <Content Include="Views\Account\ChangePassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

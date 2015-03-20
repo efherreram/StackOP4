@@ -17,6 +17,7 @@ using RestSharp;
 using StackOverflow.Data;
 using StackOverflow.Domain.Entities;
 using StackOverflow.Web.Models;
+using StackOverflow.Domain.Services;
 using HttpCookie = System.Web.HttpCookie;
 
 namespace StackOverflow.Web.Controllers
@@ -88,37 +89,51 @@ namespace StackOverflow.Web.Controllers
         [HttpPost]
         public ActionResult PasswordRecovery(PasswordRecovery model)
         {
-            SmtpClient mailClient = new SmtpClient();
-            mailClient.Host = "smtp.gmail.com";
-            mailClient.Port = 25;
-            mailClient.DeliveryMethod = SmtpDeliveryMethod.Network;
-            mailClient.EnableSsl = true;
-            mailClient.UseDefaultCredentials = false;
-            mailClient.Credentials = new NetworkCredential("mywebsmpt@gmail.com","KongKollective" );
+            
 
             var context = new StackOverflowContext();
             var account = context.Accounts.FirstOrDefault(x => x.Email == model.email);
 
             if (account == null)
             {
-                return View();
+                model.Error = String.Format("Email <strong>{0}</strong> Does Not Exist", model.email);
+                model.email = "";
+                return View(model);
             }
             
-            try
-            {
-                string email = account.Email;
-                var mensaje = new MailMessage("mywebsmpt@gmail.com", email);
-                mensaje.Subject = "Password Recovery";
-                mensaje.Body = account.Password;
-                mailClient.Send(mensaje);
-            }
-            catch (Exception ex)
-            {
-                
-            }
-            //if(account != null)
             //    return RedirectToAction("PasswordDisplay",new{password = account.Password});
+            string host = Request.Url.GetLeftPart(UriPartial.Authority);
+            string message;
+            if (host.Contains("localhost:"))
+            {
+                message = "Click to get your Password: " + host + "/Account/ChangePassword?id=" + account.Id;
+            }
+            else
+            {
+                message = "Click to get your Password: " + "http://stackop4.apphb.com/Account/ChangePassword?id=" + account.Id;
+            }
+            new MailService().SendMail(model.email,message);
+            model = new PasswordRecovery
+            {
+                Success = "An Email Has Been Sent With Instructions to Recover your Password",
+                email = ""
+            };
+            return View(model);
+        }
 
+        public ActionResult ChangePassword(string id)
+        {
+            ChangePasswordModel model = new ChangePasswordModel() {OwnerId = Guid.Parse(id)};
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult ChangePassword(ChangePasswordModel model)
+        {
+            var context = new StackOverflowContext();
+            var account = context.Accounts.Find(model.OwnerId);
+            account.Password = model.Password;
+            context.SaveChanges();
             return RedirectToAction("Login");
         }
 
@@ -151,11 +166,12 @@ namespace StackOverflow.Web.Controllers
             return RedirectToAction("Index", "Question");
         }
 
-        public ActionResult PasswordDisplay(string password)
+        public ActionResult PasswordDisplay(string id)
         {
             PasswordDisplayModel model = new PasswordDisplayModel();
-
-            model.Password = password;
+            var context = new StackOverflowContext();
+            var account = context.Accounts.Find(Guid.Parse(id));
+            model.Password = account.Password;
 
             return View(model);
         }

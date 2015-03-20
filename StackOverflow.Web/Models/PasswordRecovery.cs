@@ -12,5 +12,7 @@ namespace StackOverflow.Web.Models
         [Required]
         [EmailAddress]
         public string email { get; set; }
+        public string Error { get; set; }
+        public string Success { get; set; }
     }
 }
