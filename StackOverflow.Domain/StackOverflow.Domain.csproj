@@ -52,12 +52,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CustomDataNotations\LoginAttribute.cs" />
-    <Compile Include="CustomDataNotations\PasswordAttribute.cs" />
+    <Compile Include="CustomDataNotations\PasswordHasCapitalAttribute.cs" />
+    <Compile Include="CustomDataNotations\PasswordHasNoRepeatingValuesAttribute.cs" />
+    <Compile Include="CustomDataNotations\PasswordHasRequiredLengthAttribute.cs" />
+    <Compile Include="CustomDataNotations\PasswordHasVowelAttribute.cs" />
     <Compile Include="Entities\Account.cs" />
     <Compile Include="Entities\Answer.cs" />
     <Compile Include="Entities\Encrypter.cs" />
     <Compile Include="Entities\IEntity.cs" />
     <Compile Include="Entities\Question.cs" />
+    <Compile Include="Entities\Vote.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\MailService.cs" />
   </ItemGroup>

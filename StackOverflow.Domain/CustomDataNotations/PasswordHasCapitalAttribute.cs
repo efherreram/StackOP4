@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace StackOverflow.Domain.CustomDataNotations
 {
-    public class PasswordAttribute:ValidationAttribute
+    public class PasswordHasCapitalAttribute:ValidationAttribute
     {
 
         public override bool IsValid(object value)
@@ -23,7 +23,6 @@ namespace StackOverflow.Domain.CustomDataNotations
 
             return true;
         }
-
        
     }
 }

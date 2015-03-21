@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Security;
+using System.Web.UI.WebControls;
 using Antlr.Runtime.Misc;
 using AutoMapper;
 using StackOverflow.Data;
@@ -31,7 +32,11 @@ namespace StackOverflow.Web.Controllers
             int count = 1;
             IList<AnswerListModel> models = new ListStack<AnswerListModel>();
             var context = new StackOverflowContext();
-            var ans = context.Answers.Include(r => r.Owner).Include(r=>r.QuestionReference);
+            var ans = context.Answers.Include(r => r.Owner).Include(r => r.QuestionReference);
+
+            ans = ans.OrderByDescending(x => x.IsBestAnswer).ThenByDescending(y => y.Votes)
+                   .ThenByDescending(z => z.CreationDate);           
+
             foreach (Answer q in ans)
             {
                 if (Guid.Parse(id) != q.QuestionReference.Id)
@@ -54,6 +59,16 @@ namespace StackOverflow.Web.Controllers
             }
 
             return PartialView(models);
+        }
+
+        private bool HasBest(IEnumerable<Answer> ans)
+        {
+            return ans.Any(x => x.IsBestAnswer);
+        }
+
+        private bool HasPoints(IEnumerable<Answer> ans)
+        {
+            return ans.Any(x => x.Votes>0);
         }
 
         [Authorize]
@@ -110,8 +125,24 @@ namespace StackOverflow.Web.Controllers
         public ActionResult LikeAnswer(Guid id, Guid qId)
         {
             var context = new StackOverflowContext();
-            var account = context.Answers.Find(id);
-            account.Votes++;
+            var answer = context.Answers.Find(id);
+            var votes = context.Votes;
+            HttpCookie cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+            if (cookie != null)
+            {
+                FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(cookie.Value);
+                Guid ownerId = Guid.Parse(ticket.Name);
+                
+                if (Enumerable.Any(votes, v => v.AccountReference == ownerId && v.ReferenceToQuestionOrAnswer==id))
+                {
+                    return RedirectToAction("QuestionDetails", "Question", new { id = qId });
+                }
+
+                votes.Add(new Vote() {AccountReference = ownerId, ReferenceToQuestionOrAnswer = id});
+            }
+            
+
+            answer.Votes++;
             //context.Answers.Find(id).Votes++;
 
             context.SaveChanges();
@@ -123,15 +154,30 @@ namespace StackOverflow.Web.Controllers
         public ActionResult DisLikeAnswer(Guid id, Guid qId)
         {
             var context = new StackOverflowContext();
+            var answer = context.Answers.Find(id);
+            var votes = context.Votes;
+            HttpCookie cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+            if (cookie != null)
+            {
+                FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(cookie.Value);
+                Guid ownerId = Guid.Parse(ticket.Name);
 
-            context.Answers.Find(id).Votes--;
+                if (Enumerable.Any(votes, v => v.AccountReference == ownerId && v.ReferenceToQuestionOrAnswer == id))
+                {
+                    return RedirectToAction("QuestionDetails", "Question", new { id = qId });
+                }
+            }
+
+
+            answer.Votes--;
+            //context.Answers.Find(id).Votes++;
 
             context.SaveChanges();
 
             return RedirectToAction("QuestionDetails", "Question", new { id = qId });
         }
 
-
+        
         public ActionResult SetAsBestAnswer(Guid id, Guid qId)
         {
             var context = new StackOverflowContext();
@@ -147,20 +193,28 @@ namespace StackOverflow.Web.Controllers
                     return RedirectToAction("QuestionDetails","Question", new {id = qId});
             }
 
-            foreach (Answer ans in answers)
+            if (answer.IsBestAnswer)
             {
-                if (ans.QuestionReference.Id != qId)
-                {
-                    continue;
-                }
-
-                if (ans.Id == id)
-                    ans.IsBestAnswer = true;
-                else
-                    ans.IsBestAnswer = false;
+                answer.IsBestAnswer = false;
             }
+            else
+            {
+                foreach (Answer ans in answers)
+                {
+                    if (ans.QuestionReference.Id != qId)
+                    {
+                        continue;
+                    }
+
+                    if (ans.Id == id)
+                        ans.IsBestAnswer = true;
+                    else
+                        ans.IsBestAnswer = false;
+                }
+            }
+
             context.SaveChanges();
-            return RedirectToAction("AnswerDetails", new {id = id});
+            return RedirectToAction("QuestionDetails","Question", new {id = qId});
 
         }
 

@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.Remoting.Messaging;
 using System.Web;
@@ -45,18 +47,58 @@ namespace StackOverflow.Web.Controllers
             {
 
                 var context = new StackOverflowContext();
-                var account = _mappingEngine.Map<AccountRegisterModel, Account>(model);
+                var account = context.Accounts.FirstOrDefault(x => x.Email == model.Email);
+                if (account != null)
+                {
+                    model.ErrorMessage = "Email Already Used";
+                    return View(model);
+                }
+                account = _mappingEngine.Map<AccountRegisterModel, Account>(model);
+                account.Name += (" " + model.Surname);
+                account.IsVerified = false;
                 context.Accounts.Add(account);
                 context.SaveChanges();
+
+                string host = Request.Url.GetLeftPart(UriPartial.Authority);
+                string message;
+                if (host.Contains("localhost:"))
+                {
+                    message = "Click to Confirm: " + host + "/Account/ConfirmRegister?id=" + account.Id;
+                }
+                else
+                {
+                    message = "Click to Confirm: " + "http://stackop4.apphb.com/Account/ConfirmRegister?id=" + account.Id;
+                }
+                new MailService().SendMail(model.Email, message);
 
                 return RedirectToAction("Login", new AccountLoginModel());
             }
             return View(model);
         }
 
+        public ActionResult ConfirmRegister(string id)
+        {
+            var context = new StackOverflowContext();
+            Guid s = Guid.Parse(id);
+            var account = context.Accounts.FirstOrDefault(x=>x.Id == s);
+            //context.Accounts.FirstOrDefault(x => x.Id == s);
+            account.IsVerified = true;
+            TempData["Success"] = "Welcome <strong>" + account.Name + "</strong>!";
+
+            context.SaveChanges();
+            
+            return RedirectToAction("Login");
+        }
+
         public ActionResult Login(string email)
         {
-            return View();
+            var model = new AccountLoginModel();
+            if (TempData["Error"] != null)
+                model.ErrorMessage = TempData["Error"].ToString();
+            if(TempData["Success"] != null)
+                model.SuccessMessage = TempData["Success"].ToString();
+
+            return View(model);
         }
 
         [HttpPost]
@@ -64,15 +106,39 @@ namespace StackOverflow.Web.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (TempData["Success"] != null)
+                    model.SuccessMessage = TempData["Success"].ToString();
+                if (TempData["Error"] != null)
+                    model.ErrorMessage = TempData["Error"].ToString();
+
                 var context = new StackOverflowContext();
-                var account = context.Accounts.FirstOrDefault(x => x.Email == model.Email && x.Password == model.Password);
+                var account = context.Accounts.FirstOrDefault(x => x.Email == model.Email);
                 if (account != null)
                 {
+                    if (!account.IsVerified)
+                    {
+                        model.ErrorMessage = "Account Has not Been Verified";
+                        return View(model);
+                    }
+
+                    if (account.Password != model.Password)
+                    {
+                        SendWarningEmail(model.Email);
+                        model.ErrorMessage = "Wrong Password";
+                        return View(model);
+                    }
                     FormsAuthentication.SetAuthCookie(account.Id.ToString(), false);
                     return RedirectToAction("Index", "Question");
                 }
             }
+            model.ErrorMessage = "Account not Found";
             return View(model);
+        }
+
+        private void SendWarningEmail(string email)
+        {
+            string message = "<strong>It appears someone tried, unsuccesfully, to enter your account</strong>";
+            new MailService().SendMail(email, message);
         }
 
         public ActionResult Logout()
@@ -130,11 +196,16 @@ namespace StackOverflow.Web.Controllers
         [HttpPost]
         public ActionResult ChangePassword(ChangePasswordModel model)
         {
-            var context = new StackOverflowContext();
-            var account = context.Accounts.Find(model.OwnerId);
-            account.Password = model.Password;
-            context.SaveChanges();
-            return RedirectToAction("Login");
+            if (ModelState.IsValid)
+            {
+                var context = new StackOverflowContext();
+                var account = context.Accounts.Find(model.OwnerId);
+                account.Password = model.Password;
+                context.SaveChanges();
+                TempData["Success"] = "Your Password Has Been Updated Successfully!";
+                return RedirectToAction("Login");
+            }
+            return View(model);
         }
 
         public ActionResult ProfileView(ProfileModel model, Guid id)

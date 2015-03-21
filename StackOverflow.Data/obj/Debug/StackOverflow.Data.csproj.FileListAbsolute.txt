@@ -23,3 +23,5 @@ C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Data\bin\Deb
 C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Data\bin\Debug\System.Web.Mvc.xml
 C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Data\bin\Debug\RestSharp.dll
 C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Data\bin\Debug\RestSharp.xml
+C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Data\obj\Debug\StackOverflow.Data.Migrations.addVotes.resources
+C:\Users\Edwin\Documents\Progra 4\PorfinSeCreo-master\StackOverflow.Data\obj\Debug\StackOverflow.Data.Migrations.isConfirmed.resources

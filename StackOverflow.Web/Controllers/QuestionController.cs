@@ -116,24 +116,60 @@ namespace StackOverflow.Web.Controllers
         public ActionResult LikeQuestion(Guid id)
         {
             var context = new StackOverflowContext();
+            var question = context.Answers.Find(id);
+            var votes = context.Votes;
+            HttpCookie cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+            if (cookie != null)
+            {
+                FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(cookie.Value);
+                Guid ownerId = Guid.Parse(ticket.Name);
 
-            context.Questions.Find(id).Votes++;
+                if (Enumerable.Any(votes, v => v.AccountReference == ownerId && v.ReferenceToQuestionOrAnswer == id))
+                {
+                    return RedirectToAction("QuestionDetails", "Question", new { id = id });
+                }
+
+                votes.Add(new Vote() { AccountReference = ownerId, ReferenceToQuestionOrAnswer = id });
+            }
+
+
+            question.Votes++;
+            //context.Answers.Find(id).Votes++;
 
             context.SaveChanges();
 
-            return RedirectToAction("QuestionDetails", new { id = id });
+            return RedirectToAction("QuestionDetails", "Question", new { id = id });
+ 
         }
 
         [Authorize]
         public ActionResult DisLikeQuestion(Guid id)
         {
             var context = new StackOverflowContext();
+            var question = context.Answers.Find(id);
+            var votes = context.Votes;
+            HttpCookie cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+            if (cookie != null)
+            {
+                FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(cookie.Value);
+                Guid ownerId = Guid.Parse(ticket.Name);
 
-            context.Questions.Find(id).Votes--;
+                if (Enumerable.Any(votes, v => v.AccountReference == ownerId && v.ReferenceToQuestionOrAnswer == id))
+                {
+                    return RedirectToAction("QuestionDetails", "Question", new { id = id });
+                }
+
+                votes.Add(new Vote() { AccountReference = ownerId, ReferenceToQuestionOrAnswer = id });
+            }
+
+
+            question.Votes--;
+            //context.Answers.Find(id).Votes++;
 
             context.SaveChanges();
 
-            return RedirectToAction("QuestionDetails", new { id = id });
+            return RedirectToAction("QuestionDetails", "Question", new { id = id });
+ 
         }
 
         public ActionResult DeleteQuestion(Guid id)

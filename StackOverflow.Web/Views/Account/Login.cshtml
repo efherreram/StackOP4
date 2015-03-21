@@ -5,6 +5,19 @@
 }
 <h2>Login</h2>
 
+@if (Model.SuccessMessage != null)
+{
+    <script type="text/javascript">
+        alertify.success(@Html.Raw(Json.Encode(Model.SuccessMessage)))
+    </script>
+}
+@if (Model.ErrorMessage != null)
+{
+    <script type="text/javascript">
+        alertify.error(@Html.Raw(Json.Encode(Model.ErrorMessage)))
+    </script>
+}
+
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()

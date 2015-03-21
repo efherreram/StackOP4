@@ -15,5 +15,7 @@ namespace StackOverflow.Web.Models
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
+        public string SuccessMessage { get; set; }
+        public string ErrorMessage { get; set; }
     }
 }
