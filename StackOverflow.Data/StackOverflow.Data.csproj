@@ -53,36 +53,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\201502220451125_InitialCreate.cs" />
-    <Compile Include="Migrations\201502220451125_InitialCreate.Designer.cs">
-      <DependentUpon>201502220451125_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201503222231530_first.cs" />
+    <Compile Include="Migrations\201503222231530_first.Designer.cs">
+      <DependentUpon>201503222231530_first.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201502221929422_addAnswer.cs" />
-    <Compile Include="Migrations\201502221929422_addAnswer.Designer.cs">
-      <DependentUpon>201502221929422_addAnswer.cs</DependentUpon>
+    <Compile Include="Migrations\201503231629211_commentWithQuestionReference.cs" />
+    <Compile Include="Migrations\201503231629211_commentWithQuestionReference.Designer.cs">
+      <DependentUpon>201503231629211_commentWithQuestionReference.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201502222017266_addAnswer1.cs" />
-    <Compile Include="Migrations\201502222017266_addAnswer1.Designer.cs">
-      <DependentUpon>201502222017266_addAnswer1.cs</DependentUpon>
+    <Compile Include="Migrations\201503231824231_commentWithAccount.cs" />
+    <Compile Include="Migrations\201503231824231_commentWithAccount.Designer.cs">
+      <DependentUpon>201503231824231_commentWithAccount.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201502232102391_bestAnswerAdd.cs" />
-    <Compile Include="Migrations\201502232102391_bestAnswerAdd.Designer.cs">
-      <DependentUpon>201502232102391_bestAnswerAdd.cs</DependentUpon>
+    <Compile Include="Migrations\201503231842085_commentWithAccountVirtual.cs" />
+    <Compile Include="Migrations\201503231842085_commentWithAccountVirtual.Designer.cs">
+      <DependentUpon>201503231842085_commentWithAccountVirtual.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201503201815333_addVotes.cs" />
-    <Compile Include="Migrations\201503201815333_addVotes.Designer.cs">
-      <DependentUpon>201503201815333_addVotes.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201503201928217_isConfirmed.cs" />
-    <Compile Include="Migrations\201503201928217_isConfirmed.Designer.cs">
-      <DependentUpon>201503201928217_isConfirmed.cs</DependentUpon>
+    <Compile Include="Migrations\201503252055544_ViewsCreationAndLastLog.cs" />
+    <Compile Include="Migrations\201503252055544_ViewsCreationAndLastLog.Designer.cs">
+      <DependentUpon>201503252055544_ViewsCreationAndLastLog.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="StackOverflowContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -92,23 +90,20 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201502220451125_InitialCreate.resx">
-      <DependentUpon>201502220451125_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201503222231530_first.resx">
+      <DependentUpon>201503222231530_first.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201502221929422_addAnswer.resx">
-      <DependentUpon>201502221929422_addAnswer.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201503231629211_commentWithQuestionReference.resx">
+      <DependentUpon>201503231629211_commentWithQuestionReference.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201502222017266_addAnswer1.resx">
-      <DependentUpon>201502222017266_addAnswer1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201503231824231_commentWithAccount.resx">
+      <DependentUpon>201503231824231_commentWithAccount.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201502232102391_bestAnswerAdd.resx">
-      <DependentUpon>201502232102391_bestAnswerAdd.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201503231842085_commentWithAccountVirtual.resx">
+      <DependentUpon>201503231842085_commentWithAccountVirtual.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201503201815333_addVotes.resx">
-      <DependentUpon>201503201815333_addVotes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201503201928217_isConfirmed.resx">
-      <DependentUpon>201503201928217_isConfirmed.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201503252055544_ViewsCreationAndLastLog.resx">
+      <DependentUpon>201503252055544_ViewsCreationAndLastLog.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

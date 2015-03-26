@@ -21,5 +21,6 @@ namespace StackOverflow.Domain.Entities
         public  Account Owner { get; set; }
         public DateTime CreationDate { get; set; }
         public DateTime ModificationDate { get; set; }
+        public int NumberOfViews { get; set; }
     }
 }

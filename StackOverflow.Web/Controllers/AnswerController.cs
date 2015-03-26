@@ -58,9 +58,40 @@ namespace StackOverflow.Web.Controllers
                 models.Add(model);   
             }
 
+            context.SaveChanges();
             return PartialView(models);
         }
 
+        public ActionResult RecentAnswers(Guid ownerId)
+        {
+            IList<AnswerListModel> models = new ListStack<AnswerListModel>();
+            var context = new StackOverflowContext();
+            var ans = context.Answers.Include(r => r.Owner).Include(r => r.QuestionReference);
+
+            ans = ans.OrderByDescending(z => z.CreationDate);
+            int cont = 0;
+            foreach (Answer q in ans)
+            {
+                if (ownerId != q.Owner.Id)
+                    continue;
+                if (cont >= 5)
+                    break;
+                var model = new AnswerListModel();
+                if (q.IsBestAnswer) model.BestAnswer = "Best Answer";
+                else model.BestAnswer = "";
+                model.CreationDate = q.CreationDate;
+                model.OwnerName = q.Owner.Name;
+                model.Votes = q.Votes;
+                model.OwnerId = q.Owner.Id;
+                model.AnswerId = q.Id;
+                model.QuestionId = q.QuestionReference.Id;
+                model.AnswerText = q.AnswerText;
+                model.QuestionOwnerId = q.QuestionReference.Owner.Id;
+                models.Add(model);
+                cont++;
+            }
+            return PartialView(models);
+        }
         private bool HasBest(IEnumerable<Answer> ans)
         {
             return ans.Any(x => x.IsBestAnswer);
@@ -75,36 +106,41 @@ namespace StackOverflow.Web.Controllers
         public ActionResult AddNewAnswer()
         {
             AddNewAnswerModel model = new AddNewAnswerModel();
-            return View(model);
+            return PartialView(model);
         }
 
-        [HttpPost]
-        public ActionResult AddNewAnswer(AddNewAnswerModel model)
+    
+        public ActionResult AddAnswer(string desc)
         {
-            var QuestionId = TempData["QRef"];
-            Guid id = Guid.Parse(QuestionId.ToString());
-            if (ModelState.IsValid)
+            var QuestionId = Guid.Parse(Session["CurrentQ"].ToString());
+            if (desc.Split().Length < 5 || desc.Length < 50)
             {
+                return RedirectToAction("QuestionDetails", "Question", new { id = QuestionId, errorMessage="Description Must Contain At Least 50 Characters and 5 Words"});
+            }
+            if (ModelState.IsValid)
+            {          
+                Guid id = Guid.Parse(QuestionId.ToString());
                 var context = new StackOverflowContext();
-                var newAnswer = _mappingEngine.Map<AddNewAnswerModel, Answer>(model);
+                var newAnswer = new Answer();
                 HttpCookie cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
                 if (cookie != null)
                 {
                     FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(cookie.Value);
                     Guid ownerId = Guid.Parse(ticket.Name);
                     newAnswer.Votes = 0;
-                    newAnswer.AnswerText = model.Description;
+                    newAnswer.AnswerText = desc;
                     newAnswer.Owner = context.Accounts.FirstOrDefault(x => x.Id == ownerId);
                     newAnswer.ModificationDate = DateTime.Now;
                     newAnswer.CreationDate = DateTime.Now;
                     newAnswer.IsBestAnswer = false;
                     newAnswer.QuestionReference = context.Questions.Find(id);
+                    newAnswer.NumberOfViews = 0;
                     context.Answers.Add(newAnswer);
                     context.SaveChanges();
                 }
                 return RedirectToAction("QuestionDetails","Question", new{id = QuestionId});
             }
-            return View();
+            return RedirectToAction("QuestionDetails","Question",new{id=QuestionId});
         }
 
 

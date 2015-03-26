@@ -22,5 +22,6 @@ namespace StackOverflow.Domain.Entities
         public DateTime CreationDate { get; set; }
         public DateTime ModificationDate { get; set; }
         public bool IsBestAnswer { get; set; }
+        public int NumberOfViews { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -30,9 +31,12 @@ namespace StackOverflow.Web.Controllers
         [AllowAnonymous]
         public ActionResult Index(int start = 0)
         {
+            
             IList<QuestionListModel> models = new ListStack<QuestionListModel>();
             var context = new StackOverflowContext();
-            var que = context.Questions.Include(r =>r.Owner).ToList();
+            var que = context.Questions.Include(r => r.Owner)
+                .OrderByDescending(x=>x.Votes).ThenByDescending(y=>y.CreationDate).ToList();
+            var hasAvailable = true;
             //foreach (Question q in que)
             //{
             //    QuestionListModel model = new QuestionListModel();
@@ -49,6 +53,7 @@ namespace StackOverflow.Web.Controllers
             {
                 if (i == que.Count)
                 {
+                    hasAvailable = false;
                     break;
                 }
                 QuestionListModel model = new QuestionListModel();
@@ -58,17 +63,50 @@ namespace StackOverflow.Web.Controllers
                 model.OwnerName = que.ElementAt(i).Owner.Name;
                 model.QuestionId = que.ElementAt(i).Id;
                 model.OwnerId = que.ElementAt(i).Owner.Id;
-                model.QuestionPreview = que.ElementAt(i).Description.Substring(0, 2) + "...";
+                model.Views = que.ElementAt(i).NumberOfViews;
+                var trimmed = que.ElementAt(i).Description.Trim();
+                var substring = trimmed.Substring(0, Math.Min(10, trimmed.Length));
+                model.QuestionPreview = substring + "...";
                 models.Add(model);
             }
             start = i;
             ViewData["start"] = start.ToString();
+            ViewData["hasAvailable"] = hasAvailable;
             return View(models);        
         }
 
         public ActionResult IndexAddQuestion()
         {
             return View(new AddNewQuestionModel());
+        }
+
+        public ActionResult RecentQuestions(Guid ownerId)
+        {
+            IList<QuestionListModel> models = new ListStack<QuestionListModel>();
+            var context = new StackOverflowContext();
+            var que = context.Questions.Include(r => r.Owner).OrderByDescending(y => y.CreationDate).ToList();
+            int i, count = 0;
+            for (i = 0; i < que.Count ; i++)
+            {
+                if (count>=5 || que.ElementAt(i).Owner.Id != ownerId)
+                {
+                    break;
+                }
+                QuestionListModel model = new QuestionListModel();
+                model.Title = que.ElementAt(i).Title;
+                model.Votes = que.ElementAt(i).Votes;
+                model.CreationTime = que.ElementAt(i).CreationDate;
+                model.OwnerName = que.ElementAt(i).Owner.Name;
+                model.QuestionId = que.ElementAt(i).Id;
+                model.OwnerId = que.ElementAt(i).Owner.Id;
+                model.Views = que.ElementAt(i).NumberOfViews;
+                var trimmed = que.ElementAt(i).Description.Trim();
+                var substring = trimmed.Substring(0, Math.Min(10, trimmed.Length));
+                model.QuestionPreview = substring+"...";
+                count++;
+                models.Add(model);
+            }
+            return PartialView(models);
         }
 
         [HttpPost]
@@ -96,9 +134,9 @@ namespace StackOverflow.Web.Controllers
             return View(model);
         
         }
-
+        
         [AllowAnonymous]
-        public ActionResult QuestionDetails(Guid id)
+        public ActionResult QuestionDetails(Guid id, string errorMessage=null)
         {
             var context = new StackOverflowContext();
             var question = context.Questions.Find(id);
@@ -107,7 +145,11 @@ namespace StackOverflow.Web.Controllers
             details.Title = question.Title;
             details.Score = question.Votes;
             details.QuestionId = id;
-            
+            details.ErrorMessage = errorMessage;
+            ++(question.NumberOfViews);
+            Session["CurrentQ"] = question.Id;
+            context.SaveChanges();
+            ViewData["qId"] = id;
             return View(details);
         
         }
@@ -116,7 +158,7 @@ namespace StackOverflow.Web.Controllers
         public ActionResult LikeQuestion(Guid id)
         {
             var context = new StackOverflowContext();
-            var question = context.Answers.Find(id);
+            var question = context.Questions.Find(id);
             var votes = context.Votes;
             HttpCookie cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
             if (cookie != null)

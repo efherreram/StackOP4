@@ -72,6 +72,9 @@
                                         <h5>
                                             <small style="font-family: courier, 'new courier';" class="text-muted"> Votes: @Html.DisplayFor(i => item.Votes)</small>
                                         </h5>
+                                        <h5>
+                                            <small style="font-family: courier, 'new courier';" class="text-muted"> Views: @Html.DisplayFor(i => item.Views)</small>
+                                        </h5>
 
                                         @if (Context.User.Identity.IsAuthenticated)
                                         {
@@ -94,8 +97,11 @@
                         </div>
                         <hr>
                     }
-                    <a href="@Url.Action("Index", new {start = int.Parse(ViewData["start"].ToString())})" class="btn btn-primary pull-right btnNext">More <i class="glyphicon glyphicon-chevron-right"></i></a>
-                    <a href="@Url.Action("IndexAddQuestion")" class="btn btn-primary pull-right btnNext">Add Question</a>
+                    @if (bool.Parse(ViewData["hasAvailable"].ToString()))
+                    {
+                        <a href="@Url.Action("Index", new {start = int.Parse(ViewData["start"].ToString())})" class="btn btn-primary pull-right btnNext">More <i class="glyphicon glyphicon-chevron-right"></i></a>
+                    }
+                        <a href="@Url.Action("IndexAddQuestion")" class="btn btn-primary pull-right btnNext">Add Question</a>
 
 
                 </div>

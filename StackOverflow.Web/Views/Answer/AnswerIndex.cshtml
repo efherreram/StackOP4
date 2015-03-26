@@ -4,6 +4,8 @@
     ViewBag.Title = "AnswerIndex";
 }
 
+
+
 <div id="masthead">
     <div class="container">
         <div class="row">
@@ -45,9 +47,20 @@
 
             <div class="panel">
                 <div class="panel-body">
-
+                    <script type="text/javascript">
+                            function newComment(m,n) {
+                                alertify.prompt("Your Comment", function(evt, value) {
+                                    var l = "/Comment/AddNewComment?parentId=" + m + "&description=" + value + "&qId=" + n;
+                                    @*//var l = '@Url.Action("AddNewComment", "Comment", new {parentId = Model.ParentReference, description = "valueToReplace"})';*@
+                                    //l = l.replace("valueToReplace", value);
+                                    window.location.href = l;
+                                });
+                            }
+                    </script>
                     @foreach (var item in Model)
                     {
+                        
+                        
                         <div class="row">
                             <br>
                             <div class="col-md-2 col-sm-3 text-center">
@@ -108,10 +121,15 @@
                                 <br><br>
                             </div>
                         </div>
-                        <hr>
+                        <div>
+                            @{
+                                Html.RenderAction("CommentList","Comment",new{id=item.AnswerId, qId=item.QuestionId});
+                            }
+                            <button onclick="newComment('@item.AnswerId','@item.QuestionId')">New Comment</button>
+                        </div>                        
                     }
                     @*<a href="@Url.Action("Index", new{start = int.Parse(ViewData["start"].ToString())})" class="btn btn-primary pull-right btnNext">More <i class="glyphicon glyphicon-chevron-right"></i></a>*@
-                    <a href="@Url.Action("AddNewAnswer", "Answer", TempData["QRef"] = TempData["QuestionRef"])" class="btn btn-primary pull-right btnNext">Add Answer</a>
+                    @*<a href="@Url.Action("AddNewAnswer", "Answer", TempData["QRef"] = TempData["QuestionRef"])" class="btn btn-primary pull-right btnNext">Add Answer</a>*@
 
 
                 </div>

@@ -13,6 +13,7 @@ namespace StackOverflow.Web.Models
         public string OwnerName { get; set; }
         public string QuestionPreview { get; set; }
         public Guid OwnerId { get; set; }
+        public int Views { get; set; }
         public Guid QuestionId { get; set; }
     }
 }

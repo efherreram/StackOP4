@@ -42,8 +42,36 @@
                                         Email: @Html.DisplayFor(i=>Model.Email)
                                     </p>
                                     <p>
-                                        Reputation: @Html.DisplayFor(i=>Model.ReputationScore)
+                                        Reputation: @Html.DisplayFor(i => Model.ReputationScore)
                                     </p>
+                                    <p>
+                                        Views: @Html.DisplayFor(i => Model.Views)
+                                    </p>
+                                    <p>
+                                        Joined: @Html.DisplayFor(i => Model.CreationDate)
+                                    </p>
+                                    <p>
+                                        Last Seen: @Html.DisplayFor(i => Model.LastLogTime)
+                                    </p>
+                                    <div role="tabpanel">
+
+                                        <!-- Nav tabs -->
+                                        <ul class="nav nav-tabs" role="tablist">
+                                            <li role="presentation" class="active"><a href="#recentQ" aria-controls="recentQ" role="tab" data-toggle="tab">Last Questions</a></li>
+                                            <li role="presentation"><a href="#recentAns" aria-controls="recentAns" role="tab" data-toggle="tab">Last Answers</a></li>
+                                        </ul>
+
+                                        <!-- Tab panes -->
+                                        <div class="tab-content">
+                                            <div role="tabpanel" class="tab-pane active" id="recentQ" style="color: black">
+                                                @{Html.RenderAction("RecentQuestions","Question", new{ownerId=Model.UserId});}
+                                            </div>
+                                            <div role="tabpanel" class="tab-pane" id="recentAns">
+                                                @{Html.RenderAction("RecentAnswers","Answer",new{ownerId = Model.UserId});}
+                                            </div>
+                                        </div>
+
+                                    </div>
                                 </div>
                                 <div class="col-xs-3"></div>
                             </div>

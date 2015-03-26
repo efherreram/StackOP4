@@ -24,6 +24,16 @@
         }
     </script>
 
+    <script type="text/javascript">
+    function newComment(parent,question) {
+        alertify.prompt("Your Comment", "", function(evt, value) {
+            var l = "/Comment/AddNewComment?parentId=" + parent + "&description=" + value + "&qId=" + question;
+            @*//var l = '@Url.Action("AddNewComment", "Comment", new {parentId = Model.ParentReference, description = "valueToReplace"})';*@
+            window.location.href = l;
+        });
+    }
+    </script>
+
 
 
 </head>

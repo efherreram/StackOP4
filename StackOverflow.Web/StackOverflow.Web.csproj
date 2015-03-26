@@ -71,6 +71,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="Recaptcha.Web">
+      <HintPath>..\packages\RecaptchaNet.1.6.0\lib\net451\Recaptcha.Web.dll</HintPath>
+    </Reference>
     <Reference Include="RestSharp">
       <HintPath>..\packages\RestSharp.105.0.1\lib\net4\RestSharp.dll</HintPath>
     </Reference>
@@ -155,6 +158,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AnswerController.cs" />
+    <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\QuestionController.cs" />
     <Compile Include="Global.asax.cs">
@@ -167,6 +171,8 @@
     <Compile Include="Models\AnswerDetailModel.cs" />
     <Compile Include="Models\AnswerListModel.cs" />
     <Compile Include="Models\ChangePasswordModel.cs" />
+    <Compile Include="Models\CommentListCollectionModel.cs" />
+    <Compile Include="Models\CommentListModel.cs" />
     <Compile Include="Models\PasswordDisplayModel.cs" />
     <Compile Include="Models\QuestionDetailsModel.cs" />
     <Compile Include="Models\PasswordRecovery.cs" />
@@ -196,6 +202,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="RecaptchaNet.ReadMe.txt" />
     <Content Include="Resources\answer.jpg" />
     <Content Include="Resources\back_arrow.png" />
     <Content Include="Resources\Dislike.png" />
@@ -267,6 +274,9 @@
     <Content Include="Views\Answer\AnswerDetails.cshtml" />
     <Content Include="Views\Account\PasswordDisplay.cshtml" />
     <Content Include="Views\Account\ChangePassword.cshtml" />
+    <Content Include="Views\Comment\CommentList.cshtml" />
+    <Content Include="Views\Question\RecentQuestions.cshtml" />
+    <Content Include="Views\Answer\RecentAnswers.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

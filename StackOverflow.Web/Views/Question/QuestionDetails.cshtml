@@ -4,12 +4,30 @@
     ViewBag.Title = "QuestionDetails";
 }
 
+@if (Model.ErrorMessage != null)
+{
+    <script type="text/javascript">
+        alertify.error(@Html.Raw(Json.Encode(Model.ErrorMessage)))
+    </script>
+}
+
+<script type="text/javascript">
+    function newComment(m,n) {
+        alertify.prompt("Your Comment", function(evt, value) {
+            var l = "/Comment/AddNewComment?parentId=" + m + "&description=" + value + "&qId=" + n;
+            @*//var l = '@Url.Action("AddNewComment", "Comment", new {parentId = Model.ParentReference, description = "valueToReplace"})';*@
+            //l = l.replace("valueToReplace", value);
+            window.location.href = l;
+        });
+    }
+</script>
+
 <h2>@Html.DisplayName(Model.Title)</h2>
 
 <div>
     <h4></h4>
-    @Html.ActionLink("Like", "LikeQuestion", "Question", new { id = Model.QuestionId }, null)
-    <div>@Html.ActionLink("Dislike", "DisLikeQuestion", "Question", new { id = Model.QuestionId }, null)</div>
+    @Html.ActionLink("Like", "LikeQuestion", "Question", new {id = Model.QuestionId}, null)
+    <div>@Html.ActionLink("Dislike", "DisLikeQuestion", "Question", new {id = Model.QuestionId}, null)</div>
     <dl class="dl-horizontal">
         @*<dt>
             <font size="6"><b>@Html.DisplayNameFor(model => model.Title)</b></font>
@@ -39,14 +57,20 @@
         </dd>*@
     </dl>
 </div>
+<div>
+    @{ Html.RenderAction("CommentList", "Comment", new {id = Model.QuestionId, qId = Model.QuestionId}); }
+</div>
+<button onclick="newComment('@Model.QuestionId','@Model.QuestionId')">New Comment</button>
+
 <p>
     <a href="@Url.Action("Index", "Question")" style="color: white">
         <img src="~/Resources/back_arrow.png" style="height: 70px; width: 70px"/>Back
     </a>
 </p>
-
 <hr>
 <div>
   @{ Html.RenderAction("AnswerIndex", "Answer", new {id = Model.QuestionId});}
 </div>
-
+<div>
+    @{ Html.RenderAction("AddNewAnswer", "Answer"); }
+</div>

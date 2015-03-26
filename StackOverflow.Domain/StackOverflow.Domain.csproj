@@ -51,13 +51,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomDataNotations\DescriptionWordCountAttribute.cs" />
     <Compile Include="CustomDataNotations\LoginAttribute.cs" />
     <Compile Include="CustomDataNotations\PasswordHasCapitalAttribute.cs" />
     <Compile Include="CustomDataNotations\PasswordHasNoRepeatingValuesAttribute.cs" />
     <Compile Include="CustomDataNotations\PasswordHasRequiredLengthAttribute.cs" />
     <Compile Include="CustomDataNotations\PasswordHasVowelAttribute.cs" />
+    <Compile Include="CustomDataNotations\WordCountAttribute.cs" />
     <Compile Include="Entities\Account.cs" />
     <Compile Include="Entities\Answer.cs" />
+    <Compile Include="Entities\Comment.cs" />
     <Compile Include="Entities\Encrypter.cs" />
     <Compile Include="Entities\IEntity.cs" />
     <Compile Include="Entities\Question.cs" />

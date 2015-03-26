@@ -1,0 +1,20 @@
+﻿@model StackOverflow.Web.Models.CommentListCollectionModel
+
+
+@foreach (var item in Model.Comments) {
+    
+        <div style="color: black">
+            @Html.DisplayFor(modelItem => item.Description)
+        </div>
+        <div style="color: black">
+            At: @Html.DisplayName(item.CreationDate.ToString("D"))
+        
+            | By: <a href="@Url.Action("ProfileView","Account", new{id=item.OwnerIf})">@Html.DisplayFor(i=>item.OwnerName)</a>
+        </div>
+
+    
+}
+
+
+    
+

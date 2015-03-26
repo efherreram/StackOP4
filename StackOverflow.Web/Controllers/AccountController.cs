@@ -55,6 +55,9 @@ namespace StackOverflow.Web.Controllers
                 }
                 account = _mappingEngine.Map<AccountRegisterModel, Account>(model);
                 account.Name += (" " + model.Surname);
+                account.CreationDate = DateTime.Now;
+                account.LastLogDate = DateTime.Now;
+                account.ViewsToProfile = 0;
                 account.IsVerified = false;
                 context.Accounts.Add(account);
                 context.SaveChanges();
@@ -143,6 +146,15 @@ namespace StackOverflow.Web.Controllers
 
         public ActionResult Logout()
         {
+            var context = new StackOverflowContext();
+            HttpCookie cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+            if (cookie != null)
+            {
+                FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(cookie.Value);
+                Guid userId = Guid.Parse(ticket.Name);
+                context.Accounts.Find(userId).LastLogDate = DateTime.Now;
+                context.SaveChanges();
+            }
             FormsAuthentication.SignOut();
             return RedirectToAction("Login");
         }
@@ -215,8 +227,11 @@ namespace StackOverflow.Web.Controllers
 
             model.Email = account.Email;
             model.UserName = account.Name;
-            
-
+            model.CreationDate = account.CreationDate;
+            model.Views = ++(account.ViewsToProfile);
+            model.LastLogTime = account.LastLogDate;
+            model.UserId = account.Id;
+            context.SaveChanges();
             return View(model);
         }
 
@@ -231,7 +246,9 @@ namespace StackOverflow.Web.Controllers
                 Guid UserId = Guid.Parse(ticket.Name);
                 model.Email = context.Accounts.FirstOrDefault(x => x.Id == UserId).Email;
                 model.UserName = context.Accounts.FirstOrDefault(x => x.Id == UserId).Name;
-
+                model.CreationDate = context.Accounts.FirstOrDefault(x => x.Id == UserId).CreationDate;
+                model.LastLogTime = context.Accounts.FirstOrDefault(x => x.Id == UserId).LastLogDate;
+                model.Views = context.Accounts.FirstOrDefault(x => x.Id == UserId).ViewsToProfile;
                 return RedirectToAction("ProfileView", new { id = UserId });
             }
             return RedirectToAction("Index", "Question");

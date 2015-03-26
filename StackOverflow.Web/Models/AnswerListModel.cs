@@ -19,6 +19,7 @@ namespace StackOverflow.Web.Models
         public string AnswerCount { get; set; }
         public string BestAnswer { get; set; }
         public string AnswerText { get; set; }
+        public int NumberOfViews { get; set; }
 
     }
 }
