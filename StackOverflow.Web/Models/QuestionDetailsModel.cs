@@ -12,6 +12,7 @@ namespace StackOverflow.Web.Models
         public int Score { get; set; }
         public Guid QuestionId { get; set; }
         public string ErrorMessage { get; set; }
+        public bool UserHasVoted { get; set; }
         
     }
 }

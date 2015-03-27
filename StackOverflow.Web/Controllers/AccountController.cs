@@ -20,6 +20,8 @@ using StackOverflow.Data;
 using StackOverflow.Domain.Entities;
 using StackOverflow.Web.Models;
 using StackOverflow.Domain.Services;
+using Recaptcha.Web;
+using Recaptcha.Web.Mvc;
 using HttpCookie = System.Web.HttpCookie;
 
 namespace StackOverflow.Web.Controllers
@@ -96,6 +98,7 @@ namespace StackOverflow.Web.Controllers
         public ActionResult Login(string email)
         {
             var model = new AccountLoginModel();
+            Session["Strikes"] = 0;
             if (TempData["Error"] != null)
                 model.ErrorMessage = TempData["Error"].ToString();
             if(TempData["Success"] != null)
@@ -107,8 +110,26 @@ namespace StackOverflow.Web.Controllers
         [HttpPost]
         public ActionResult Login(AccountLoginModel model)
         {
+            
             if (ModelState.IsValid)
             {
+                if (int.Parse(Session["Strikes"].ToString()) >= 3)
+                {
+                    RecaptchaVerificationHelper recaptchaHelper = this.GetRecaptchaVerificationHelper();
+
+                    if (String.IsNullOrEmpty(recaptchaHelper.Response))
+                    {
+                        ModelState.AddModelError("", "Captcha answer cannot be empty.");
+                        return View(model);
+                    }
+
+                    RecaptchaVerificationResult recaptchaResult = recaptchaHelper.VerifyRecaptchaResponse();
+
+                    if (recaptchaResult != RecaptchaVerificationResult.Success)
+                    {
+                        ModelState.AddModelError("", "Incorrect captcha answer.");
+                    }
+                }
                 if (TempData["Success"] != null)
                     model.SuccessMessage = TempData["Success"].ToString();
                 if (TempData["Error"] != null)
@@ -128,6 +149,9 @@ namespace StackOverflow.Web.Controllers
                     {
                         SendWarningEmail(model.Email);
                         model.ErrorMessage = "Wrong Password";
+                        
+                        Session["Strikes"] = int.Parse(Session["Strikes"].ToString())+1;
+                        model.MistakesWereMade = int.Parse(Session["Strikes"].ToString());
                         return View(model);
                     }
                     FormsAuthentication.SetAuthCookie(account.Id.ToString(), false);
@@ -135,6 +159,9 @@ namespace StackOverflow.Web.Controllers
                 }
             }
             model.ErrorMessage = "Account not Found";
+            
+            Session["Strikes"] = int.Parse(Session["Strikes"].ToString()) + 1;
+            model.MistakesWereMade = int.Parse(Session["Strikes"].ToString());
             return View(model);
         }
 

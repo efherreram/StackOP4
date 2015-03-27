@@ -139,6 +139,7 @@ namespace StackOverflow.Web.Controllers
         public ActionResult QuestionDetails(Guid id, string errorMessage=null)
         {
             var context = new StackOverflowContext();
+            var context2 = new StackOverflowContext();
             var question = context.Questions.Find(id);
             QuestionDetailsModel details = new QuestionDetailsModel();
             details.Description = question.Description;
@@ -146,6 +147,15 @@ namespace StackOverflow.Web.Controllers
             details.Score = question.Votes;
             details.QuestionId = id;
             details.ErrorMessage = errorMessage;
+            HttpCookie cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+            if (cookie != null)
+            {
+                FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(cookie.Value);
+                Guid ownerId = Guid.Parse(ticket.Name);
+                details.UserHasVoted =
+                    (context2.Votes.FirstOrDefault(
+                        x => x.AccountReference == ownerId && x.ReferenceToQuestionOrAnswer == id) != null);
+            }
             ++(question.NumberOfViews);
             Session["CurrentQ"] = question.Id;
             context.SaveChanges();

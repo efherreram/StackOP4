@@ -17,5 +17,6 @@ namespace StackOverflow.Web.Models
 
         public string SuccessMessage { get; set; }
         public string ErrorMessage { get; set; }
+        public int MistakesWereMade { get; set; }
     }
 }

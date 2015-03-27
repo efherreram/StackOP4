@@ -1,4 +1,5 @@
 ﻿@model StackOverflow.Web.Models.AccountLoginModel
+@using Recaptcha.Web.Mvc;
 
 @{
     ViewBag.Title = "Login";
@@ -21,17 +22,17 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4></h4>
-        <hr />
+        <hr/>
         @Html.ValidationSummary(true)
         <div class="form-group">
             <div class="col-md-10">
                 <div class="col-md-2"></div>
                 <div style="margin-bottom: 25px" class="input-group">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-user" style="color: black"></i></span>
-                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @placeholder = "Email" } })
+                    @Html.EditorFor(model => model.Email, new {htmlAttributes = new {@placeholder = "Email"}})
                     @Html.ValidationMessageFor(model => model.Email)
                 </div>
             </div>
@@ -41,7 +42,7 @@
                 <div class="col-md-2"></div>
                 <div style="margin-bottom: 25px" class="input-group">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-lock" style="color: black"></i></span>
-                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @placeholder = "Password" } })
+                    @Html.EditorFor(model => model.Password, new {htmlAttributes = new {@placeholder = "Password"}})
                     @Html.ValidationMessageFor(model => model.Password)
                 </div>
             </div>
@@ -53,11 +54,15 @@
                 </div>
                 <div class="col">
                     @Html.ActionLink("Forgot Password", "PasswordRecovery")
-                    <div>Don't have an account? @Html.ActionLink("Sign Up", "Register")</div>                 
+                    <div>Don't have an account? @Html.ActionLink("Sign Up", "Register")</div>
                 </div>
             </div>
         </div>
     </div>
+    if (Model.MistakesWereMade >= 3)
+     {
+         @Html.Recaptcha()
+     }
 }
 <div>
     @*@Html.ActionLink("Back to List", "Index")*@
