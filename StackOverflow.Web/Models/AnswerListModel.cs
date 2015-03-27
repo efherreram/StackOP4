@@ -15,7 +15,7 @@ namespace StackOverflow.Web.Models
         public Guid AnswerId { get; set; }
         public Guid QuestionId { get; set; }
         public Guid QuestionOwnerId { get; set; }
-
+        public bool UserHasVoted { get; set; }
         public string AnswerCount { get; set; }
         public string BestAnswer { get; set; }
         public string AnswerText { get; set; }

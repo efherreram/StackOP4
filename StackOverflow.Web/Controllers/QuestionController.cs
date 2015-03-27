@@ -156,6 +156,7 @@ namespace StackOverflow.Web.Controllers
                     (context2.Votes.FirstOrDefault(
                         x => x.AccountReference == ownerId && x.ReferenceToQuestionOrAnswer == id) != null);
             }
+            else {details.UserHasVoted = false;}
             ++(question.NumberOfViews);
             Session["CurrentQ"] = question.Id;
             context.SaveChanges();
