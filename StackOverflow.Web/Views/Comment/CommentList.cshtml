@@ -1,18 +1,35 @@
 ﻿@model StackOverflow.Web.Models.CommentListCollectionModel
 
 
-@foreach (var item in Model.Comments) {
+@foreach (var item in Model.Comments)
+{
+    if (item.ReferenceToQuestion == item.ReferenceToQuestionOrAnswer)
+    {
+        <div style="margin-bottom: 20px">
+            <div style="color: white">
+                @Html.DisplayFor(modelItem => item.Description)
+            </div>
+            <div style="color: white">
+                At: @Html.DisplayName(item.CreationDate.ToString("D"))
+
+                | By: <a href="@Url.Action("ProfileView", "Account", new {id = item.OwnerIf})">@Html.DisplayFor(i => item.OwnerName)</a>
+            </div>
+        </div>
     
+    }
+    else
+    {
         <div style="color: black">
             @Html.DisplayFor(modelItem => item.Description)
         </div>
         <div style="color: black">
             At: @Html.DisplayName(item.CreationDate.ToString("D"))
-        
-            | By: <a href="@Url.Action("ProfileView","Account", new{id=item.OwnerIf})">@Html.DisplayFor(i=>item.OwnerName)</a>
-        </div>
 
-    
+            | By: <a href="@Url.Action("ProfileView","Account", new{id=item.OwnerIf})">@Html.DisplayFor(i => item.OwnerName)</a>
+        </div>
+    }
+
+
 }
 
 

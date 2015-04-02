@@ -5,17 +5,18 @@
 }
 
 
-
-<div id="masthead">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-7">
-                <h1>
-                    Answers
-                    <p class="lead"></p>
-                </h1>
-            </div>
-            @*<div class="col-md-5">
+@if (Model.Count() != 0)
+{   <hr/>
+    <div id="masthead">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7">
+                    <h1>
+                        Answers
+                        <p class="lead"></p>
+                    </h1>
+                </div>
+                @*<div class="col-md-5">
                                       <div class="well well-lg">
                                           <div class="row">
                                               <div class="col-sm-12">
@@ -25,30 +26,30 @@
                                           </div>
                                       </div>
                                   </div>*@
-        </div>
-    </div><!-- /cont -->
+            </div>
+        </div><!-- /cont -->
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="top-spacer"> </div>
+                </div>
+            </div>
+        </div><!-- /cont -->
+
+    </div>
+
+
 
     <div class="container">
         <div class="row">
+
             <div class="col-md-12">
-                <div class="top-spacer"> </div>
-            </div>
-        </div>
-    </div><!-- /cont -->
 
-</div>
-
-
-
-<div class="container">
-    <div class="row">
-
-        <div class="col-md-12">
-
-            <div class="panel">
-                <div class="panel-body">
-                    <script type="text/javascript">
-                            function newComment(m,n) {
+                <div class="panel">
+                    <div class="panel-body">
+                        <script type="text/javascript">
+                            function newComment(m, n) {
                                 alertify.prompt("Your Comment", function(evt, value) {
                                     var l = "/Comment/AddNewComment?parentId=" + m + "&description=" + value + "&qId=" + n;
                                     @*//var l = '@Url.Action("AddNewComment", "Comment", new {parentId = Model.ParentReference, description = "valueToReplace"})';*@
@@ -56,89 +57,102 @@
                                     window.location.href = l;
                                 });
                             }
-                    </script>
-                    @foreach (var item in Model)
-                    {
-                        
-                        
-                        <div class="row">
-                            <br>
-                            <div class="col-md-2 col-sm-3 text-center">
-                                <a class="story-title" href="#"><img alt="" src="~/Resources/answer.jpg" style="width: 100px; height: 100px" class="img-circle"></a>
-                            </div>
-                            <div class="col-md-10 col-sm-9">
-                                <h3>Repurpose Content to Reach a Wider Audience</h3>
-                                <div class="row">
-                                    <div class="col-xs-9">
-                                        <h4>
-                                            <span class="label label-default">@Html.DisplayFor(modelItem => item.AnswerText)</span>
-                                            @if (item.BestAnswer != "")
-                                            {
-                                                <img src="~/Resources/ribbon_red.png" style="width: 20px; height: 30px"/>
-                                            }
-                                        </h4>
-                                        <h4>
-                                            <small style="font-family: courier, 'new courier';" class="text-muted">@Html.DisplayName(item.CreationDate.ToString("D"))</small>
-                                        </h4>
+                        </script>
+                        @foreach (var item in Model)
+                        {
 
-                                        <h5>
-                                            <small style="font-family: courier, 'new courier';" class="text-muted"> By: <a href="@Url.Action("ProfileView", "Account", new {id = item.OwnerId})" class="text-muted">@Html.DisplayFor(i => item.OwnerName)</a></small>
-                                        </h5>
-                                        <h5>
-                                            <small style="font-family: courier, 'new courier';" class="text-muted"> Votes: @Html.DisplayFor(i => item.Votes)</small>
-                                        </h5>
-                                        <h5>
+
+                            <div class="row">
+                                <br>
+                                <div class="col-md-2 col-sm-3 text-center">
+                                    <a class="story-title" href="#"><img alt="" src="~/Resources/answer.jpg" style="width: 100px; height: 100px" class="img-circle"></a>
+                                </div>
+                                <div class="col-md-10 col-sm-9">
+                                    <h3>Repurpose Content to Reach a Wider Audience</h3>
+                                    <div class="row">
+                                        <div class="col-xs-9">
+                                            <h4>
+                                                <span class="label label-default" style="max-width: 10px;text-wrap:inherit">@Html.DisplayFor(modelItem => item.AnswerText)</span>
+                                                @if (item.BestAnswer != "")
+                                                {
+                                                    <img src="~/Resources/ribbon_red.png" style="width: 20px; height: 30px"/>
+                                                }
+                                            </h4>
+                                            <h4>
+                                                <small style="font-family: courier, 'new courier';" class="text-muted">@Html.DisplayName(item.CreationDate.ToString("D"))</small>
+                                            </h4>
+
+                                            <h5>
+                                                <small style="font-family: courier, 'new courier';" class="text-muted"> By: <a href="@Url.Action("ProfileView", "Account", new {id = item.OwnerId})" class="text-muted">@Html.DisplayFor(i => item.OwnerName)</a></small>
+                                            </h5>
+                                            <h5>
+                                                <small style="font-family: courier, 'new courier';" class="text-muted"> Votes: @Html.DisplayFor(i => item.Votes)</small>
+                                            </h5>
+                                            <h5>
+                                                @if (Context.User.Identity.IsAuthenticated)
+                                                {
+                                                    if (item.OwnerId == Guid.Parse(Context.User.Identity.Name))
+                                                    {
+
+                                                        <a href="@Url.Action("DeleteAnswer", "Answer", new {id = item.AnswerId, qId = item.QuestionId})">
+                                                            <img src="~/Resources/x_delete.png" style="width: 20px; height: 20px"/>
+                                                        </a>
+
+                                                    }
+
+                                                    if (!item.UserHasVoted)
+                                                    {
+                                                        <a href="@Url.Action("LikeAnswer", "Answer", new {id = item.AnswerId, qId = item.QuestionId})">
+                                                            <img src="~/Resources/Like.png" style="width: 25px; height: 25px"/>
+                                                        </a>
+                                                        <a href="@Url.Action("DisLikeAnswer", "Answer", new {id = item.AnswerId, qId = item.QuestionId})">
+                                                            <img src="~/Resources/Dislike.png" style="width: 25px; height: 25px"/>
+                                                        </a>
+                                                    }
+
+                                                    if (item.QuestionOwnerId == Guid.Parse(Context.User.Identity.Name))
+                                                    {
+                                                        <a href="@Url.Action("SetAsBestAnswer", "Answer", new {id = item.AnswerId, qId = item.QuestionId})">
+                                                            <img src="~/Resources/Favorite.png" style="width: 20px; height: 20px"/>
+                                                        </a>
+                                                    }
+                                                }
+                                            </h5>
+
                                             @if (Context.User.Identity.IsAuthenticated)
                                             {
-                                                if (item.OwnerId == Guid.Parse(Context.User.Identity.Name))
+                                                if (item.UserHasVoted)
                                                 {
-
-                                                    <a href="@Url.Action("DeleteAnswer", "Answer", new {id = item.AnswerId, qId = item.QuestionId})">
-                                                        <img src="~/Resources/x_delete.png" style="width: 20px; height: 20px"/>
-                                                    </a>
-
-                                                }
-
-                                                <a href="@Url.Action("LikeAnswer", "Answer", new {id = item.AnswerId, qId = item.QuestionId})">
-                                                    <img src="~/Resources/Like.png" style="width: 25px; height: 25px"/>
-                                                </a>
-                                                <a href="@Url.Action("DisLikeAnswer", "Answer", new {id = item.AnswerId, qId = item.QuestionId})">
-                                                    <img src="~/Resources/Dislike.png" style="width: 25px; height: 25px"/>
-                                                </a>
-
-                                                if (item.QuestionOwnerId == Guid.Parse(Context.User.Identity.Name))
-                                                {
-                                                    <a href="@Url.Action("SetAsBestAnswer", "Answer", new {id = item.AnswerId, qId = item.QuestionId})">
-                                                        <img src="~/Resources/Favorite.png" style="width: 20px; height: 20px"/>
-                                                    </a>
+                                                    <h6 style="color: black">You Have Already Voted</h6>
                                                 }
                                             }
-                                        </h5>
 
+                                        </div>
+                                        <div class="col-xs-3"></div>
                                     </div>
-                                    <div class="col-xs-3"></div>
+                                    <br><br>
                                 </div>
-                                <br><br>
                             </div>
-                        </div>
-                        <div>
-                            @{
-                                Html.RenderAction("CommentList","Comment",new{id=item.AnswerId, qId=item.QuestionId});
-                            }
-                            <button onclick="newComment('@item.AnswerId','@item.QuestionId')">New Comment</button>
-                        </div>                        
-                    }
-                    @*<a href="@Url.Action("Index", new{start = int.Parse(ViewData["start"].ToString())})" class="btn btn-primary pull-right btnNext">More <i class="glyphicon glyphicon-chevron-right"></i></a>*@
-                    @*<a href="@Url.Action("AddNewAnswer", "Answer", TempData["QRef"] = TempData["QuestionRef"])" class="btn btn-primary pull-right btnNext">Add Answer</a>*@
+                            <div>
+                                @{
+                                    Html.RenderAction("CommentList", "Comment", new {id = item.AnswerId, qId = item.QuestionId});
+                                }
+                                <button onclick=" newComment('@item.AnswerId', '@item.QuestionId') ">New Comment</button>
+                            </div>
+                            <hr style="border-color: black"/>
+                            
+                        }
+                        @*<a href="@Url.Action("Index", new{start = int.Parse(ViewData["start"].ToString())})" class="btn btn-primary pull-right btnNext">More <i class="glyphicon glyphicon-chevron-right"></i></a>*@
+                        @*<a href="@Url.Action("AddNewAnswer", "Answer", TempData["QRef"] = TempData["QuestionRef"])" class="btn btn-primary pull-right btnNext">Add Answer</a>*@
 
 
+                    </div>
                 </div>
-            </div>
 
 
 
-        </div><!--/col-12-->
+            </div><!--/col-12-->
+        </div>
     </div>
-</div>
-
+}
 

@@ -34,8 +34,9 @@ namespace StackOverflow.Web.Controllers
         {            
             IList<QuestionListModel> models = new ListStack<QuestionListModel>();
             var context = new StackOverflowContext();
+            var context2 = new StackOverflowContext();
             var que = context.Questions.Include(r => r.Owner)
-                .OrderByDescending(x=>x.Votes).ThenByDescending(y=>y.CreationDate).ToList();
+                .OrderByDescending(x=>x.CreationDate).ToList();
             var hasAvailable = true;
             //foreach (Question q in que)
             //{
@@ -49,7 +50,7 @@ namespace StackOverflow.Web.Controllers
             //    models.Add(model);
             //}
             int i;
-            for (i = start; i < start+6; i++)
+            for (i = 0; i < start+25; i++)
             {
                 if (i == que.Count)
                 {
@@ -66,6 +67,7 @@ namespace StackOverflow.Web.Controllers
                 model.Views = que.ElementAt(i).NumberOfViews;
                 var trimmed = que.ElementAt(i).Description.Trim();
                 var substring = trimmed.Substring(0, Math.Min(10, trimmed.Length));
+                model.AnswerCount = AnswerCount(model.QuestionId);
                 model.QuestionPreview = substring + "...";
                 models.Add(model);
             }
@@ -73,6 +75,13 @@ namespace StackOverflow.Web.Controllers
             ViewData["start"] = start.ToString();
             ViewData["hasAvailable"] = hasAvailable;
             return View(models);        
+        }
+
+        private int AnswerCount(Guid qId)
+        {
+            var context = new StackOverflowContext();
+            var count= context.Answers.Include(r => r.QuestionReference).Count(a => a.QuestionReference.Id == qId);
+            return count;
         }
 
         public ActionResult IndexAddQuestion()

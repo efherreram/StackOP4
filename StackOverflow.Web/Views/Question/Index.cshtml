@@ -13,7 +13,6 @@
             <div class="col-md-7">
                 <h1>
                     Questions
-                    <p class="lead"></p>
                 </h1>
             </div>
             @*<div class="col-md-5">
@@ -74,6 +73,9 @@
                                         </h5>
                                         <h5>
                                             <small style="font-family: courier, 'new courier';" class="text-muted"> Views: @Html.DisplayFor(i => item.Views)</small>
+                                        </h5>
+                                        <h5>
+                                            <small style="font-family: courier, 'new courier';" class="text-muted"> Answers: @Html.DisplayFor(i => item.AnswerCount)</small>
                                         </h5>
 
                                         @if (Context.User.Identity.IsAuthenticated)

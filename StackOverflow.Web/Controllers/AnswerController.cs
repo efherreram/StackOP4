@@ -55,6 +55,7 @@ namespace StackOverflow.Web.Controllers
                 model.QuestionId = q.QuestionReference.Id;
                 model.AnswerText = q.AnswerText;
                 model.QuestionOwnerId = q.QuestionReference.Owner.Id;
+                model.UserHasVoted = AnswerHasBeenVoted(model.AnswerId);
                 models.Add(model);   
             }
 
@@ -100,6 +101,26 @@ namespace StackOverflow.Web.Controllers
         private bool HasPoints(IEnumerable<Answer> ans)
         {
             return ans.Any(x => x.Votes>0);
+        }
+
+        public bool AnswerHasBeenVoted(Guid ansId)
+        {
+            var context = new StackOverflowContext();
+            var votes = context.Votes;
+            HttpCookie cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+            if (cookie != null)
+            {
+                FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(cookie.Value);
+                Guid ownerId = Guid.Parse(ticket.Name);
+
+                if (Enumerable.Any(votes, v => v.AccountReference == ownerId && v.ReferenceToQuestionOrAnswer == ansId))
+                {
+                    return true;
+                }
+
+            }
+
+            return false;
         }
 
         [Authorize]
