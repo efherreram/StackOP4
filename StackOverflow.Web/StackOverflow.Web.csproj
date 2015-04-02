@@ -152,6 +152,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api Controllers\AccountLoginApiController.cs" />
+    <Compile Include="Api Controllers\AccountRegisterApiController.cs" />
+    <Compile Include="Api Controllers\QuestionListController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -280,7 +283,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\AccountApi\" />
+    <Folder Include="Views\AccountRegisterApi\" />
     <Folder Include="Views\Email\" />
+    <Folder Include="Views\QuestionList\" />
     <Folder Include="Views\Test\" />
   </ItemGroup>
   <ItemGroup>

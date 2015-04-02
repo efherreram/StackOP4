@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
+using System.Web.Configuration;
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Security;
@@ -30,8 +31,7 @@ namespace StackOverflow.Web.Controllers
         // GET: /Question/
         [AllowAnonymous]
         public ActionResult Index(int start = 0)
-        {
-            
+        {            
             IList<QuestionListModel> models = new ListStack<QuestionListModel>();
             var context = new StackOverflowContext();
             var que = context.Questions.Include(r => r.Owner)

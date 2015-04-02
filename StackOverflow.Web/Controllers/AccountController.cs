@@ -120,6 +120,7 @@ namespace StackOverflow.Web.Controllers
                     if (String.IsNullOrEmpty(recaptchaHelper.Response))
                     {
                         ModelState.AddModelError("", "Captcha answer cannot be empty.");
+                        model.MistakesWereMade = int.Parse(Session["Strikes"].ToString());
                         return View(model);
                     }
 
@@ -128,6 +129,7 @@ namespace StackOverflow.Web.Controllers
                     if (recaptchaResult != RecaptchaVerificationResult.Success)
                     {
                         ModelState.AddModelError("", "Incorrect captcha answer.");
+                        model.MistakesWereMade=int.Parse(Session["Strikes"].ToString());
                     }
                 }
                 if (TempData["Success"] != null)
