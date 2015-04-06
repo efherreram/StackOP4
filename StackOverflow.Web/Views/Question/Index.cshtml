@@ -38,7 +38,13 @@
 
 </div>
 
+<div style="margin-left: 15px">
+    Sort By:
+    @Html.ActionLink("Date", "Index", "Question", new {start=0,type = 0}, null) |
+    @Html.ActionLink("Views", "Index", "Question", new {start=0, type = 1 }, null) |
+    @Html.ActionLink("Votes", "Index", "Question", new {start=0, type = 2 },null) |
 
+</div>
 
 <div class="container">
     <div class="row">

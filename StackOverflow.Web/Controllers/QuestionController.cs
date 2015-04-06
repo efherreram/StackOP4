@@ -30,13 +30,33 @@ namespace StackOverflow.Web.Controllers
         
         // GET: /Question/
         [AllowAnonymous]
-        public ActionResult Index(int start = 0)
+        public ActionResult Index(int start = 0, int type=0)
         {            
             IList<QuestionListModel> models = new ListStack<QuestionListModel>();
             var context = new StackOverflowContext();
             var context2 = new StackOverflowContext();
-            var que = context.Questions.Include(r => r.Owner)
-                .OrderByDescending(x=>x.CreationDate).ToList();
+            List<Question> que = new List<Question>();
+
+            switch (type)
+            {
+                case 0:
+                    que = context.Questions.Include(r => r.Owner)
+                .OrderByDescending(x => x.CreationDate).ToList();
+                    break;
+                case 1:
+                    que = context.Questions.Include(r => r.Owner)
+                .OrderByDescending(x => x.NumberOfViews).ToList();
+                    break;
+                case 2:
+                    que = context.Questions.Include(r => r.Owner)
+                .OrderByDescending(x => x.Votes).ToList();
+                    break;
+                case 3:
+                    que = context.Questions.Include(r => r.Owner)
+                .OrderByDescending(x => x.CreationDate).ToList();
+                    break;
+            }
+            
             var hasAvailable = true;
             //foreach (Question q in que)
             //{
